@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatIconModule } from "@angular/material/icon";
 
-import { HomeComponent } from './home.component';
+import { AppComponent } from './app.component';
 import { ToolbarModule } from './toolbar/toolbar.module';
 import { FooterModule } from './footer/footer.module';
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import {HttpClientModule} from "@angular/common/http";
-import {userService} from "./user.service";
+import { HttpClientModule } from "@angular/common/http";
+import { userService } from "./user.service";
+import { RegisterUserComponent } from './register-user/register-user.component';
+import {HomeComponent} from "./home/home.component";
 
 // const routes: Routes = [
-//   { path: '', component: HomeComponent, pathMatch: 'full' },
+//   { path: '', component: AppComponent, pathMatch: 'full' },
 //   { path: '**', component: PageNotFoundComponent }  // Wildcard route for a 404 page
 //
 // ];
@@ -18,9 +20,11 @@ import {userService} from "./user.service";
 @NgModule({
   declarations: [
     HomeComponent,
+    AppComponent,
     ToolbarModule,
     FooterModule,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    RegisterUserComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +33,6 @@ import {userService} from "./user.service";
     // RouterModule.forRoot(routes, { useHash: true })
   ],
   providers: [userService],
-  bootstrap: [HomeComponent]
+  bootstrap: [AppComponent]
 })
-export class HomeModule { }
+export class AppComponentModule { }

@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {user} from "./user";
-import {HttpErrorResponse} from "@angular/common/http";
-import {userService} from "./user.service";
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import {user} from "../user";
+import {userService} from "../user.service";
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.html',
-  styleUrls: ['./home.css']
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   users: user[];
 
   constructor(private usrServices: userService) {
