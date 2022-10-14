@@ -11,15 +11,15 @@ export class userService {
   constructor(private http: HttpClient) {}
 
   public getUsers(): Observable<user[]> {
-    return this.http.get<user[]>(`${this.apiServerUrl}/usr-lt`)
+    return this.http.get<user[]>(`${this.apiServerUrl}/usr`)
   }
   public addUser(usr: user): Observable<user> {
-    return this.http.post<user>(`${this.apiServerUrl}/usr-add`, usr);
+    return this.http.post<user>(`${this.apiServerUrl}/usr`,usr);
   }
   public updateUser(usr: user): Observable<user> {
-    return this.http.put<user>(`${this.apiServerUrl}/usr-upt`, usr);
+    return this.http.put<user>(`${this.apiServerUrl}/usr`,usr);
   }
   public deleteUser(userId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/usr-delt/${userId}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/usr/${userId}`);
   }
 }
