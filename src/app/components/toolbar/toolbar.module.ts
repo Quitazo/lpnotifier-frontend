@@ -1,18 +1,20 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {user} from "../user";
-import {userService} from "../user.service";
+import {user} from "../../services/user";
+import {userService} from "../../services/user.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-toolbar',
+  templateUrl: './toolbar.html',
+  styleUrls: ['./toolbar.css']
 })
-export class HomeComponent implements OnInit {
+export class ToolbarModule implements OnInit {
   users: user[];
+  usr: string;
 
   constructor(private usrServices: userService) {
     this.users =[];
+    this.usr = "";
   }
 
   ngOnInit() {
@@ -23,6 +25,7 @@ export class HomeComponent implements OnInit {
     this.usrServices.getUsers().subscribe(
       (response: user[]) => {
         this.users = response;
+        this.usr = this.users[0].name;
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

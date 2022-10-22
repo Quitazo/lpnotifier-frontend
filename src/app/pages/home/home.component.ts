@@ -1,14 +1,14 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {user} from "../user";
-import {userService} from "../user.service";
-import {HttpErrorResponse} from "@angular/common/http";
+import {user} from "../../services/user";
+import {userService} from "../../services/user.service";
 
 @Component({
-  selector: 'app-toolbar',
-  templateUrl: './toolbar.html',
-  styleUrls: ['./toolbar.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class ToolbarModule implements OnInit {
+export class HomeComponent implements OnInit {
   users: user[];
 
   constructor(private usrServices: userService) {

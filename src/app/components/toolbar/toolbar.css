@@ -30,7 +30,11 @@ p {
   color: white;
   font-weight: 600;
 }
-
+.toolbar_user{
+  display: flex;
+  align-items: center;
+  padding-inline: 1rem;
+}
 .toolbar #logo-principal {
   color: white !important;
   margin: 0 10px;
@@ -39,14 +43,14 @@ p {
   width: 40px;
 }
 
-.toolbar #twitter-logo {
+.toolbar_user #twitter-logo {
   color: #eeeeee;
   height: 40px;
   width: 40px;
   margin: 0 8px;
 }
 
-.toolbar #login-logo {
+.toolbar_user #login-logo {
   color: white !important;
   font-size: 30px;
   height: 30px;
@@ -54,7 +58,7 @@ p {
   margin: 0 16px;
 }
 
-.toolbar #twitter-logo:hover,
-.toolbar #login-logo:hover {
+.toolbar_user #twitter-logo:hover,
+.toolbar_user #login-logo:hover {
   opacity: 0.7;
 }
