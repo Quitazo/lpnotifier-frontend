@@ -1,7 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {user} from "../../services/user";
 import {userService} from "../../services/user.service";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-home',
@@ -9,20 +12,41 @@ import {userService} from "../../services/user.service";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  users: user[];
+  users: user[] = [];
+
+  displayedColumns: string[] = ['id', 'name', 'email', 'enable', 'username', 'phone'];
+  dataSource = new MatTableDataSource<user>(this.users);
+
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort = new MatSort();
 
   constructor(private usrServices: userService) {
-    this.users =[];
+
+  }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getUsers();
+  }
+
+  activeFilterEvent(event: Event) {
+    const input = (event.target as HTMLInputElement).value;
+    this.applyFilter(input);
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
 
   public getUsers(): void {
     this.usrServices.getUsers().subscribe(
       (response: user[]) => {
-        this.users = response;
+        this.dataSource.data = response;
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

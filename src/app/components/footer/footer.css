@@ -1,13 +1,11 @@
 footer {
-  display: flex;
-  margin-top: 8%;
   padding-inline: 1.5%;
   flex-direction: column;
   align-items: flex-start;
   background-color: #4a4a4a;
   color: #eeeeee;
   font-family: system-ui;
-  min-width: 700px;
+  min-width: 500px;
   min-height: 220px;
 }
 #footer_container {
@@ -35,7 +33,7 @@ h4{
   display: flex;
   align-items: center;
   align-self: start;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   font-family: ui-monospace;
   font-size: 110%;
 }
@@ -51,7 +49,7 @@ h4{
   display: flex;
   align-items: center;
   align-self: start;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 #footer_contact_logo{
   margin-right: 6px;
@@ -74,7 +72,7 @@ h4{
 }
 i{
   font-size: 150%;
-  vertical-align: middle;
+  vertical-align: top;
   color: #2e343a;
 }
 div{
