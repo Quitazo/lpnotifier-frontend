@@ -19,10 +19,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from "@angular/material/menu";
 import { MatTableModule } from '@angular/material/table';
-import { ReactiveFormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatPaginatorModule} from "@angular/material/paginator";
-import { TablePaginatorComponent } from './components/table-paginator/table-paginator.component';
 import {MatSortModule} from "@angular/material/sort";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -33,23 +33,24 @@ import {MatSortModule} from "@angular/material/sort";
     PageNotFoundComponent,
     RegisterComponent,
     LoginComponent,
-    TablePaginatorComponent,
   ],
-  imports: [
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    HttpClientModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatMenuModule,
-    MatTableModule,
-    ReactiveFormsModule,
-    MatPaginatorModule,
-    MatSortModule,
-  ],
+    imports: [
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        HttpClientModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatMenuModule,
+        MatTableModule,
+        ReactiveFormsModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatGridListModule,
+        FormsModule,
+    ],
   providers: [userService],
   bootstrap: [AppComponent]
 })

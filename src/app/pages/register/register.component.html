@@ -1,24 +1,63 @@
 <div class="content" role="main">
   <div class="container">
-    <form class="px-4 py-3">
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="correo@example.com" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
+    <div class="info_container">
+      <mat-icon>person</mat-icon>
+      <p>Sign Up in the application to took the benefits of our services and the application.
+      </p>
+    </div>
+    <div class="form_container">
+      <form class="form_register" [formGroup]="userForm" (ngSubmit)="formSubmit()">
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your name</mat-label>
+          <input matInput type="text" #inputName placeholder="Your name" formControlName="name" ngModel required/>
+          <mat-hint align="end">{{inputName.value.length || 0}}/60</mat-hint>
+          <mat-error *ngIf="userForm.invalid">{{getErrorNameMessage()}}</mat-error>
+        </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your username</mat-label>
+          <input matInput type="text" #inputUsername placeholder="Username" formControlName="username" ngModel required>
+          <mat-hint align="end">{{inputUsername.value.length || 0}}/30</mat-hint>
+          <mat-error *ngIf="userForm.invalid">{{getErrorUsernameMessage()}}</mat-error>
+        </mat-form-field>
 
-      <button type="submit" class="btn btn-primary">Sign in</button>
-    </form>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">New around here? Sign up</a>
-    <a class="dropdown-item" href="#">Forgot password?</a>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your email</mat-label>
+          <input matInput type="email" #inputEmail placeholder="correo@example.com" formControlName="email" ngModel required>
+          <mat-error *ngIf="userForm.invalid">{{getErrorEmailMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <input matInput #inputPw [type]="hide ? 'password' : 'text'" formControlName="pw" ngModel required>
+          <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </a>
+          <mat-hint align="end">{{inputPw.value.length || 0}}/40</mat-hint>
+          <mat-error *ngIf="userForm.invalid">{{getErrorPwMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm your password</mat-label>
+          <input matInput #inputPw2 [type]="hide2 ? 'password' : 'text'" formControlName="pw2" required>
+          <a mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+            <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </a>
+          <mat-hint align="end">{{inputPw2.value.length || 0}}/40</mat-hint>
+          <mat-error *ngIf="userForm.invalid">{{getErrorPwsMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>(Optional) Phone</mat-label>
+          <input matInput #inputPhone placeholder="Phone number" formControlName="phone" [minLength]="6" [maxLength]="15" ngModel>
+          <mat-hint align="end">{{inputPhone.value.length || 0}}/15</mat-hint>
+        </mat-form-field>
+
+        <button mat-raised-button class="btn btn-primary" [disabled]="userForm.invalid" (submit)="formSubmit()">Create your user</button>
+      </form>
+
+      <button mat-raised-button type="submit" class="btn btn-snd">Already have account</button>
+      <button mat-raised-button type="submit" class="btn btn-trd">Forgot password?</button>
+    </div>
   </div>
 </div>
