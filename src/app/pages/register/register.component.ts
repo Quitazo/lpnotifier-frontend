@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, ValidatorFn, Validators} from "@angular/forms";
-import {userService} from "../../services/user.service";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { userService } from "../../services/user.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import Swal from "sweetalert2";
+import {timer} from "rxjs";
 
 @Component({
   selector: 'app-register',
@@ -8,11 +11,12 @@ import {userService} from "../../services/user.service";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  progress_bar = false;
   hide = true;
   hide2 = true;
   public userForm: FormGroup;
 
-  constructor(private userServices: userService, private fb: FormBuilder) {
+  constructor(private userServices: userService, private fb: FormBuilder, private snack: MatSnackBar) {
     this.userForm = this.fb.group({
       name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
       username: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
@@ -61,9 +65,18 @@ export class RegisterComponent implements OnInit {
 
 
   formSubmit() {
+    this.progress_bar = true;
     this.userServices.addUser(this.userForm.value).subscribe(
       (data) => {
-        alert("El usuario con el correo "+data.name+" ha sido creado con exito.")
+        this.progress_bar = false;
+        Swal.fire({ title: 'User saved', html: 'El usuario con el correo '+data.email+' ha sido creado con exito.',
+          showConfirmButton: false, icon: 'success', timer: 1500 })
+      },(error) => {
+        this.progress_bar = false;
+        this.snack.open('Ha ocurrido un error al guardar el usuario.','Cerrar',{
+          duration: 3000,
+          verticalPosition: "top"
+        });
       }
     )
   }

@@ -12,17 +12,19 @@ import { userService } from "./services/user.service";
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { MatButtonModule } from "@angular/material/button";
-import { MatIconModule } from "@angular/material/icon";
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from "@angular/material/menu";
 import { MatTableModule } from '@angular/material/table';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatPaginatorModule} from "@angular/material/paginator";
-import {MatSortModule} from "@angular/material/sort";
-import {MatGridListModule} from "@angular/material/grid-list";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatSortModule } from "@angular/material/sort";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -38,18 +40,20 @@ import {MatGridListModule} from "@angular/material/grid-list";
         AppRoutingModule,
         BrowserAnimationsModule,
         BrowserModule,
+        FormsModule,
         HttpClientModule,
         MatButtonModule,
         MatFormFieldModule,
+        ReactiveFormsModule,
         MatIconModule,
         MatInputModule,
         MatMenuModule,
         MatTableModule,
-        ReactiveFormsModule,
-        MatPaginatorModule,
-        MatSortModule,
         MatGridListModule,
-        FormsModule,
+        MatPaginatorModule,
+        MatProgressBarModule,
+        MatSortModule,
+        MatSnackBarModule,
     ],
   providers: [userService],
   bootstrap: [AppComponent]

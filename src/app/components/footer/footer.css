@@ -63,10 +63,13 @@ h4{
   color: darkgray;
   font-size: 90%;
 }
+#footer_follow_list {
+  display: flex;
+}
 .footer_follow_links{
   background-color: #c5c5c5;
   padding: 12px;
-  margin: 15px;
+  margin: 5px 10%;
   border-radius: 50%;
   color: #24292e;
 }
