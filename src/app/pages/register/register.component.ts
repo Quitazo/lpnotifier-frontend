@@ -1,9 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { AbstractControl, FormBuilder, FormControl, FormGroup,
+  ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
 import { userService } from "../../services/user.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import Swal from "sweetalert2";
-import {timer} from "rxjs";
+
+function MatchValidator(source: string, target: string): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const sourceCtrl = control.get(source);
+    const targetCtrl = control.get(target);
+
+    return sourceCtrl && targetCtrl && sourceCtrl.value !== targetCtrl.value
+      ? { mismatch: true }
+      : null;
+  };
+}
 
 @Component({
   selector: 'app-register',
@@ -12,8 +23,8 @@ import {timer} from "rxjs";
 })
 export class RegisterComponent implements OnInit {
   progress_bar = false;
-  hide = true;
-  hide2 = true;
+  hide = false;
+  hide2 = false;
   public userForm: FormGroup;
 
   constructor(private userServices: userService, private fb: FormBuilder, private snack: MatSnackBar) {
@@ -26,7 +37,7 @@ export class RegisterComponent implements OnInit {
       phone : new FormControl(null, [Validators.maxLength(15)])
     },
       {
-        // validators: [Validation.match('password', 'confirmPassword')]
+          validators: [MatchValidator('password', 'confirmPassword')]
       });
   }
 
@@ -62,7 +73,9 @@ export class RegisterComponent implements OnInit {
     }
     return this.userForm.get('pw2')?.hasError('not_matching') ? 'The password doesn\'t match!' : '';
   }
-
+  get getPasswordMatchError() {
+    return (this.userForm.getError('mismatch') && this.userForm.get('confirmPassword')?.touched);
+  }
 
   formSubmit() {
     this.progress_bar = true;

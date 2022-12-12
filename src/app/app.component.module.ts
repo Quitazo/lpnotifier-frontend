@@ -25,6 +25,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatSortModule } from "@angular/material/sort";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { UserHomeComponent } from './pages/userPages/user-home/user-home.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     PageNotFoundComponent,
     RegisterComponent,
     LoginComponent,
+    UserHomeComponent,
   ],
     imports: [
         AppRoutingModule,

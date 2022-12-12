@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {userService} from "../../services/user.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {LoginService} from "../../services/login.service";
 
 @Component({
   selector: 'app-login',
@@ -11,15 +12,13 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class LoginComponent implements OnInit {
   progress_bar = false;
   hide = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
   public userForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private snack: MatSnackBar) {
+  constructor(private fb: FormBuilder, private snack: MatSnackBar, private loginService:LoginService) {
     this.userForm = this.fb.group({
-        username: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
         email : new FormControl('', [Validators.required, Validators.email]),
-        pw : new FormControl('', [Validators.required]),
-      });
+        pw : new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
+    });
   }
 
   ngOnInit(): void {
@@ -39,7 +38,22 @@ export class LoginComponent implements OnInit {
   }
 
   formLogin() {
-
+    this.loginService.generateToken(this.userForm.getRawValue()).subscribe(
+      (data:any) => {
+        console.log(data);
+        this.loginService.saveToken(data.token);
+        this.loginService.getCurrentUser().subscribe((user:any) => {
+          this.loginService.setUser(user);
+          console.log(user);
+        })
+      },error => {
+        console.log("Error en login ");
+      }
+    )
+    // this.snack.open('Funciona el coso.','Cerrar',{
+    //   duration: 3000,
+    //   verticalPosition: "top"
+    // });
   }
 }
 
