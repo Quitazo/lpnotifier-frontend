@@ -8,7 +8,7 @@
         </p>
       </div>
       <div class="form_container">
-        <form class="form_register" [formGroup]="userForm">
+        <form (ngSubmit)="formSubmit()" class="form_register" [formGroup]="userForm">
           <mat-form-field appearance="outline">
             <mat-label>Enter your name</mat-label>
             <input matInput type="text" #inputName placeholder="Your name" formControlName="name" ngModel required/>
@@ -55,7 +55,7 @@
             <mat-hint align="end">{{inputPhone.value.length || 0}}/15</mat-hint>
           </mat-form-field>
 
-          <button mat-raised-button class="btn btn-primary" [disabled]="userForm.invalid" (submit)="formSubmit()">Create your user</button>
+          <button mat-raised-button class="btn btn-primary" [disabled]="userForm.invalid">Create your user</button>
         </form>
 
         <button mat-raised-button type="submit" class="btn btn-snd" [routerLink]="'/login'" >Already have account</button>

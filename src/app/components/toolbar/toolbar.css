@@ -34,7 +34,7 @@ p {
   align-items: center;
   padding-inline: 1.3rem;
 }
-.toolbar #logo-principal {
+.toolbar .logo-principal {
   color: white !important;
   margin: 0 10px;
   font-size: 40px;

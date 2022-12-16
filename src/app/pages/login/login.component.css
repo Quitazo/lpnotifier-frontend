@@ -87,6 +87,7 @@
 }
 #msg_bar{
   font-size: 12px;
+  align-self: baseline;
 }
 #form_check_container{
   margin: 15px 5px;

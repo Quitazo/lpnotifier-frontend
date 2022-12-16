@@ -83,10 +83,10 @@ export class RegisterComponent implements OnInit {
       (data) => {
         this.progress_bar = false;
         Swal.fire({ title: 'User saved', html: 'El usuario con el correo '+data.email+' ha sido creado con exito.',
-          showConfirmButton: false, icon: 'success', timer: 1500 })
+          showConfirmButton: true, icon: 'success', timer: 3000 })
       },(error) => {
         this.progress_bar = false;
-        this.snack.open('Ha ocurrido un error al guardar el usuario.','Cerrar',{
+        this.snack.open('Ha ocurrido un error al guardar el usuario.\n'+ error,'Cerrar',{
           duration: 3000,
           verticalPosition: "top"
         });

@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
   }
 
   formLogin() {
+    this.progress_bar = true;
     this.loginService.generateToken(this.userForm.getRawValue()).subscribe(
       (data:any) => {
         this.loginService.loginUser(data.token);
@@ -45,23 +46,26 @@ export class LoginComponent implements OnInit {
           this.loginService.setUser(user);
           if(this.loginService.getUserRole() == 'USER'){
             //user dashboard
+            this.progress_bar = false;
             this.router.navigate(['user-dashboard']);
             this.loginService.loginStatusSubjec.next(true);
           }
           else if(this.loginService.getUserRole() == 'ADMIN'){
             //dashboard admin
+            this.progress_bar = false;
             this.router.navigate(['admin']);
             this.loginService.loginStatusSubjec.next(true);
           }
           else{
+            this.progress_bar = false;
             this.loginService.logout();
           }
         })
       },(error) => {
-        console.log(error);
-        this.snack.open('Detalles inválidos , vuelva a intentar !!','Aceptar',{
+        this.progress_bar = false;
+        this.snack.open('Detalles inválidos , vuelva a intentar !!\n'+ error,'Aceptar',{
           duration:3000
-        })
+        });
       }
     )
   }

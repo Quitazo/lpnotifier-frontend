@@ -1,7 +1,13 @@
 <!--Toolbar-->
 <div class="toolbar" role="banner">
-  <a aria-label="AppComponent" [routerLink]="'/'" title="Inicio">
-    <img id="logo-principal" src="../../../assets/logo-lp.png" alt="">
+  <a *ngIf="!loginService.isLoggedIn()" aria-label="AppComponent" [routerLink]="'/'" title="Inicio">
+    <img class="logo-principal" src="../../../assets/logo-lp.png" alt="">
+  </a>
+  <a *ngIf="loginService.isLoggedIn() && loginService.getUserRole() == 'ADMIN'" aria-label="AppComponent" [routerLink]="'/admin'" title="Inicio">
+    <img class="logo-principal" src="../../../assets/logo-lp.png" alt="">
+  </a>
+  <a *ngIf="loginService.isLoggedIn() && loginService.getUserRole() == 'USER'" aria-label="AppComponent" [routerLink]="'/user-dashboard'" title="Inicio">
+    <img class="logo-principal" src="../../../assets/logo-lp.png" alt="">
   </a>
   <span>
     Bienvenido LP Notifier
