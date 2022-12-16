@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {userService} from "../../services/user.service";
-import {HttpErrorResponse} from "@angular/common/http";
-import {user} from "../../services/user";
+import {LoginService} from "../../services/login.service";
 
 @Component({
   selector: 'app-toolbar',
@@ -9,27 +7,15 @@ import {user} from "../../services/user";
   styleUrls: ['./toolbar.css']
 })
 export class ToolbarModule implements OnInit {
-  // users: user[];
-  // usr: string;
 
-  constructor() {
-    // this.users =[];
-    // this.usr = "";
+  constructor(public loginService:LoginService) {
   }
 
   ngOnInit() {
-    // this.getUsers();
   }
 
-  // public getUsers(): void {
-  //   this.usrServices.getUsers().subscribe(
-  //     (response: user[]) => {
-  //       this.users = response;
-  //       this.usr = this.users[0].name;
-  //     },
-  //     (error: HttpErrorResponse) => {
-  //       alert(error.message);
-  //     }
-  //   );
-  // }
+  public logout() {
+    this.loginService.logout();
+    window.location.reload();
+  }
 }

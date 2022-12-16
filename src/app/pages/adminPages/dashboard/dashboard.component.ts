@@ -1,17 +1,17 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {user} from "../../services/user";
-import {userService} from "../../services/user.service";
+import {user} from "../../../services/user";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {userService} from "../../../services/user.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-root-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class HomeComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   users: user[] = [];
 
   displayedColumns: string[] = ['id', 'name', 'email', 'enable', 'username', 'phone'];
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getUsers();
+    this.getUsers();
   }
 
   activeFilterEvent(event: Event) {
@@ -38,19 +38,19 @@ export class HomeComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
 
-  // public getUsers(): void {
-  //   this.usrServices.getUsers().subscribe(
-  //     (response: user[]) => {
-  //       this.dataSource.data = response;
-  //     },
-  //     (error: HttpErrorResponse) => {
-  //       alert(error.message);
-  //     }
-  //   );
-  // }
+  public getUsers(): void {
+    this.usrServices.getUsers().subscribe(
+      (response: user[]) => {
+        this.dataSource.data = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
 }

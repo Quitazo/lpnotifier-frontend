@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {userService} from "../../services/user.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {LoginService} from "../../services/login.service";
 
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   hide = true;
   public userForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private snack: MatSnackBar, private loginService:LoginService) {
+  constructor(private fb: FormBuilder, private snack: MatSnackBar, private loginService:LoginService, private router:Router) {
     this.userForm = this.fb.group({
         email : new FormControl('', [Validators.required, Validators.email]),
         pw : new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
@@ -40,20 +40,30 @@ export class LoginComponent implements OnInit {
   formLogin() {
     this.loginService.generateToken(this.userForm.getRawValue()).subscribe(
       (data:any) => {
-        console.log(data);
-        this.loginService.saveToken(data.token);
+        this.loginService.loginUser(data.token);
         this.loginService.getCurrentUser().subscribe((user:any) => {
           this.loginService.setUser(user);
-          console.log(user);
+          if(this.loginService.getUserRole() == 'USER'){
+            //user dashboard
+            this.router.navigate(['user-dashboard']);
+            this.loginService.loginStatusSubjec.next(true);
+          }
+          else if(this.loginService.getUserRole() == 'ADMIN'){
+            //dashboard admin
+            this.router.navigate(['admin']);
+            this.loginService.loginStatusSubjec.next(true);
+          }
+          else{
+            this.loginService.logout();
+          }
         })
-      },error => {
-        console.log("Error en login ");
+      },(error) => {
+        console.log(error);
+        this.snack.open('Detalles inválidos , vuelva a intentar !!','Aceptar',{
+          duration:3000
+        })
       }
     )
-    // this.snack.open('Funciona el coso.','Cerrar',{
-    //   duration: 3000,
-    //   verticalPosition: "top"
-    // });
   }
 }
 

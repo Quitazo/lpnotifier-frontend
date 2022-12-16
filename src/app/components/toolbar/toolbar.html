@@ -13,13 +13,21 @@
       <mat-icon id="login-logo">reorder</mat-icon>
     </button>
     <mat-menu #menu="matMenu" xPosition="before">
-      <button mat-menu-item aria-label="User page" [routerLink]="'/signup'" >
+      <button *ngIf="!loginService.isLoggedIn()" mat-menu-item aria-label="User page" [routerLink]="'/signup'" >
         <mat-icon>person_add</mat-icon>
         <span>SignUp</span>
       </button>
-      <button mat-menu-item aria-label="User page" [routerLink]="'/login'" >
+      <button *ngIf="!loginService.isLoggedIn()" mat-menu-item aria-label="User page" [routerLink]="'/login'" >
         <mat-icon>person</mat-icon>
         <span>Login</span>
+      </button>
+      <button *ngIf="loginService.isLoggedIn()" mat-menu-item aria-label="User page" routerLink="/admin-profile">
+        <mat-icon>user</mat-icon>
+        <span>Profile</span>
+      </button>
+      <button *ngIf="loginService.isLoggedIn()" mat-menu-item aria-label="User page" (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
       </button>
     </mat-menu>
   </div>
