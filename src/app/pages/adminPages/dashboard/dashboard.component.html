@@ -8,6 +8,8 @@
       <mat-icon>search</mat-icon>
     </div>
     <div class="mat-elevation-z8">
+      <mat-progress-bar *ngIf="progressBar" mode="indeterminate" color="warn"></mat-progress-bar>
+
       <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header="">Id</th>

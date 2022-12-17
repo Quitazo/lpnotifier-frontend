@@ -12,6 +12,7 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  progressBar = false;
   users: user[] = [];
 
   displayedColumns: string[] = ['id', 'name', 'email', 'enable', 'username', 'phone'];
@@ -44,12 +45,16 @@ export class DashboardComponent implements OnInit {
   }
 
   public getUsers(): void {
+    this.progressBar=true;
     this.usrServices.getUsers().subscribe(
       (response: user[]) => {
         this.dataSource.data = response;
+        this.progressBar=false;
+
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
+        this.progressBar=false;
       }
     );
   }

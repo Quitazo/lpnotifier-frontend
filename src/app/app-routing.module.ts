@@ -31,13 +31,13 @@ const routes: Routes = [
     path:'admin',
     component:DashboardComponent,
     pathMatch:'full',
-    canActivate:[AdminGuard]
-  },
-  {
-    path:'admin-profile',
-    component:ProfileComponent,
-    pathMatch:'full',
-    canActivate:[AdminGuard]
+    canActivate:[AdminGuard],
+    children:[
+      {
+        path: 'profile',
+        component:ProfileComponent
+      }
+    ]
   },
   {
     path:'user-dashboard',
@@ -45,8 +45,6 @@ const routes: Routes = [
     pathMatch:'full',
     canActivate:[NormalGuard]
   },
-
-
   {
     path: '**',
     component: PageNotFoundComponent
