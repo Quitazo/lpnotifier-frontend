@@ -10,8 +10,8 @@ import {LoginService} from "../../../services/login.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  progress_bar = false;
   hide = true;
+  progress_bar = false;
   public userForm: FormGroup;
 
   constructor(private fb: FormBuilder, private snack: MatSnackBar, private loginService:LoginService, private router:Router) {
@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit {
   }
 
   formLogin() {
-    this.progress_bar = true;
-    this.loginService.generateToken(this.userForm.getRawValue()).subscribe(
+      this.progress_bar = true;
+      this.loginService.generateToken(this.userForm.getRawValue()).subscribe(
       (data:any) => {
         this.loginService.loginUser(data.token);
         this.loginService.getCurrentUser().subscribe((user:any) => {
