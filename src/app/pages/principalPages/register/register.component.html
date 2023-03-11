@@ -1,36 +1,35 @@
 <div class="content" role="main">
   <div class="container">
-    <h1 class="container_title">Create a new user</h1>
+    <h1 class="container_title">Crear un usuario</h1>
     <div class="container_panels">
       <div class="info_container">
-        <img id="fondo_register" src="../../../assets/fondo_register.png" alt="" />
-        <p id="info_register">Sign Up in the application to took the benefits of our services and the application.
-        </p>
+        <img id="fondo_register" src="../../../../assets/fondo_register.png" alt="" />
+        <p id="info_register">Regístrese en la aplicación para aprovechar los beneficios de nuestros servicios y la aplicación.</p>
       </div>
       <div class="form_container">
         <form (ngSubmit)="formSubmit()" class="form_register" [formGroup]="userForm">
           <mat-form-field appearance="outline">
-            <mat-label>Enter your name</mat-label>
+            <mat-label>Ingresa un nombre</mat-label>
             <input matInput type="text" #inputName placeholder="Your name" formControlName="name" ngModel required/>
             <mat-hint align="end">{{inputName.value.length || 0}}/60</mat-hint>
             <mat-error *ngIf="userForm.invalid">{{getErrorNameMessage()}}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Enter your username</mat-label>
+            <mat-label>Ingresa un usuario</mat-label>
             <input matInput type="text" #inputUsername placeholder="Username" formControlName="username" ngModel required>
             <mat-hint align="end">{{inputUsername.value.length || 0}}/30</mat-hint>
             <mat-error *ngIf="userForm.invalid">{{getErrorUsernameMessage()}}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Enter your email</mat-label>
+            <mat-label>Ingresa un correo</mat-label>
             <input matInput type="email" #inputEmail placeholder="correo@example.com" formControlName="email" ngModel required>
             <mat-error *ngIf="userForm.invalid">{{getErrorEmailMessage()}}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Enter your password</mat-label>
+            <mat-label>Ingresa una contraseña</mat-label>
             <input matInput #inputPw [type]="hide ? 'password' : 'text'" formControlName="pw" ngModel required>
             <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -40,7 +39,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Confirm your password</mat-label>
+            <mat-label>Confirmar la contraseña</mat-label>
             <input matInput #inputPw2 [type]="hide2 ? 'password' : 'text'" formControlName="pw2" required>
             <a mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
               <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -50,16 +49,16 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>(Optional) Phone</mat-label>
+            <mat-label>(Optional) Telefono</mat-label>
             <input matInput #inputPhone placeholder="Phone number" formControlName="phone" [minLength]="6" [maxLength]="15" ngModel>
             <mat-hint align="end">{{inputPhone.value.length || 0}}/15</mat-hint>
           </mat-form-field>
 
-          <button mat-raised-button class="btn btn-primary" [disabled]="userForm.invalid">Create your user</button>
+          <button mat-raised-button class="btn btn-primary" [disabled]="userForm.invalid">Crea un usuario</button>
         </form>
 
-        <button mat-raised-button type="submit" class="btn btn-snd" [routerLink]="'/login'" >Already have account</button>
-        <button mat-raised-button type="submit" class="btn btn-trd">Forgot password?</button>
+        <button mat-raised-button type="submit" class="btn btn-snd" [routerLink]="'/login'" >Tengo un usuario</button>
+        <button mat-raised-button type="submit" class="btn btn-trd">Olvide la contraseña?</button>
       </div>
     </div>
     <mat-label id="msg_bar" *ngIf="progress_bar==true" >Cargando...</mat-label>

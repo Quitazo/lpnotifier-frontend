@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {LoginService} from "../../services/login.service";
+import {LoginService} from "../../../services/login.service";
 
 @Component({
   selector: 'app-login',
@@ -44,10 +44,12 @@ export class LoginComponent implements OnInit {
         this.loginService.loginUser(data.token);
         this.loginService.getCurrentUser().subscribe((user:any) => {
           this.loginService.setUser(user);
+
+          console.log(this.loginService.loginUser(data.token));
           if(this.loginService.getUserRole() == 'USER'){
             //user dashboard
             this.progress_bar = false;
-            this.router.navigate(['user-dashboard']);
+            this.router.navigate(['user']);
             this.loginService.loginStatusSubjec.next(true);
           }
           else if(this.loginService.getUserRole() == 'ADMIN'){

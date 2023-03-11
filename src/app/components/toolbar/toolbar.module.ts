@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../../services/login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-toolbar',
@@ -8,7 +9,7 @@ import {LoginService} from "../../services/login.service";
 })
 export class ToolbarModule implements OnInit {
 
-  constructor(public loginService:LoginService) {
+  constructor(public loginService:LoginService, public router:Router) {
   }
 
   ngOnInit() {

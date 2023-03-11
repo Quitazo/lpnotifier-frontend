@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from './app.component';
 import { FooterModule } from './components/footer/footer.module';
-import { HomeComponent } from "./pages/home/home.component";
-import { LoginComponent } from './pages/login/login.component';
-import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
-import { RegisterComponent } from './pages/register/register.component';
+import { HomeComponent } from "./pages/principalPages/home/home.component";
+import { LoginComponent } from './pages/principalPages/login/login.component';
+import { PageNotFoundComponent } from "./pages/principalPages/page-not-found/page-not-found.component";
+import { RegisterComponent } from './pages/principalPages/register/register.component';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,11 +24,12 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatSortModule } from "@angular/material/sort";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { UserHomeComponent } from './pages/userPages/user-home/user-home.component';
+import { UserHomeComponent } from './pages/user-pages/user-home/user-home.component';
 import { authInterceptorProviders } from "./services/auth.interceptor";
 import { DashboardComponent } from './pages/adminPages/dashboard/dashboard.component';
-import { UserDashboardComponent } from './pages/userPages/user-dashboard/user-dashboard.component';
-import { ProfileComponent } from './pages/adminPages/profile/profile.component';
+import { UserDashboardComponent } from './pages/user-pages/user-dashboard/user-dashboard.component';
+import { AdminProfileComponent } from './pages/adminPages/admin-profile/admin-profile.component';
+import { UserProfileComponent } from './pages/user-pages/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -36,33 +37,34 @@ import { ProfileComponent } from './pages/adminPages/profile/profile.component';
     ToolbarModule,
     FooterModule,
     HomeComponent,
-    PageNotFoundComponent,
     RegisterComponent,
     LoginComponent,
     UserHomeComponent,
     DashboardComponent,
     UserDashboardComponent,
-    ProfileComponent,
+    AdminProfileComponent,
+    UserProfileComponent,
+    PageNotFoundComponent,
   ],
-    imports: [
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatInputModule,
-        MatMenuModule,
-        MatTableModule,
-        MatGridListModule,
-        MatPaginatorModule,
-        MatProgressBarModule,
-        MatSortModule,
-        MatSnackBarModule,
-    ],
+  imports: [
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
+    MatTableModule,
+    MatGridListModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatSortModule,
+    MatSnackBarModule,
+  ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })

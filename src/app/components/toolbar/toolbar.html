@@ -7,35 +7,37 @@
     <a *ngIf="loginService.isLoggedIn() && loginService.getUserRole() == 'ADMIN'" aria-label="AppComponent" [routerLink]="'/admin'" title="Inicio">
       <img class="logo-principal" src="../../../assets/logo-lp.png" alt="">
     </a>
-    <a *ngIf="loginService.isLoggedIn() && loginService.getUserRole() == 'USER'" aria-label="AppComponent" [routerLink]="'/user-dashboard'" title="Inicio">
+    <a *ngIf="loginService.isLoggedIn() && loginService.getUserRole() == 'USER'" aria-label="AppComponent" [routerLink]="'/user'" title="Inicio">
       <img class="logo-principal" src="../../../assets/logo-lp.png" alt="">
     </a>
   </div>
-  <span>
-    Welcome to LP Notifier
-  </span>
+  <span>Bienvenido a LP Notifier</span>
   <img id="icon-flag" src="../../../assets/flag-co.png" alt="">
   <div class="spacer"></div>
   <div class="toolbar_user">
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" title="Menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu" title="Menu">
       <mat-icon id="login-logo">reorder</mat-icon>
     </button>
     <mat-menu #menu="matMenu" xPosition="before">
       <button *ngIf="!loginService.isLoggedIn()" mat-menu-item aria-label="User page" routerLink="/signup" >
         <mat-icon>person_add</mat-icon>
-        <span>SignUp</span>
+        <span>Registrarse</span>
       </button>
       <button *ngIf="!loginService.isLoggedIn()" mat-menu-item aria-label="User page" routerLink="/login" >
         <mat-icon>person</mat-icon>
-        <span>Login</span>
+        <span>Iniciar Sesión</span>
       </button>
-      <button *ngIf="loginService.isLoggedIn()" mat-menu-item aria-label="User page" routerLink="/admin/profile">
-        <mat-icon>user</mat-icon>
-        <span>Profile</span>
+      <button *ngIf="loginService.isLoggedIn() && loginService.getUserRole() == 'ADMIN'" mat-menu-item aria-label="Admin profile" [routerLink]="['admin','profile']" routerLinkActive="active">
+        <mat-icon>account_box</mat-icon>
+        <span>Perfil</span>
+      </button>
+      <button *ngIf="loginService.isLoggedIn() && loginService.getUserRole() == 'USER'" mat-menu-item aria-label="User profile" [routerLink]="['user','profile']" routerLinkActive="active">
+        <mat-icon>account_box</mat-icon>
+        <span>Perfil</span>
       </button>
       <button *ngIf="loginService.isLoggedIn()" mat-menu-item aria-label="User page" (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
-        <span>Logout</span>
+        <span>Cerrar Sesión</span>
       </button>
     </mat-menu>
   </div>

@@ -1,10 +1,9 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {user} from "../../services/user";
-import {userService} from "../../services/user.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {LicitacionService} from "../../../services/licitacion.service";
+import {licitacion} from "../../../services/licitacion";
 
 @Component({
   selector: 'app-home',

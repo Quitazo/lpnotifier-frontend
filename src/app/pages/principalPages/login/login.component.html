@@ -1,19 +1,19 @@
 <div class="content" role="main">
   <div class="container">
-    <h1 class="container_title">Welcome back</h1>
+    <h1 class="container_title">Bienvenido de vuelta</h1>
     <div class="info_container">
-      <img id="fondo_login" src="../../../assets/fondo_login.png" alt=""/>
+      <img id="fondo_login" src="../../../../assets/fondo_login.png" alt=""/>
     </div>
     <div class="form_container">
       <form (ngSubmit)="formLogin()" class="form_login" [formGroup]="userForm">
         <mat-form-field appearance="outline">
-          <mat-label>Enter your email</mat-label>
+          <mat-label>Correo</mat-label>
           <input matInput placeholder="correo@example.com" formControlName="email" ngModel required>
           <mat-error *ngIf="userForm.invalid">{{getErrorEmailMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Enter your password</mat-label>
+          <mat-label>Contraseña</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" formControlName="pw" ngModel required>
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                   [attr.aria-pressed]="hide">
@@ -22,18 +22,18 @@
           <mat-error *ngIf="userForm.invalid">{{getErrorPwMessage()}}</mat-error>
         </mat-form-field>
 
-        <button mat-raised-button class="btn btn-primary" [disabled]="userForm.invalid">Login</button>
+        <button mat-raised-button class="btn btn-primary" [disabled]="userForm.invalid">Iniciar Sesión</button>
         <div id="form_check_container">
           <div class="form-check">
             <input type="checkbox" class="form-check-input" id="dropdownCheck">
             <label class="form-check-label" for="dropdownCheck">
-              Remember me
+              Recordar usuario
             </label>
           </div>
         </div>
       </form>
-      <button mat-raised-button type="submit" class="btn btn-snd" [routerLink]="'/signup'">New around here? Sign up</button>
-      <button mat-raised-button type="submit" class="btn btn-trd">Forgot password?</button>
+      <button mat-raised-button type="submit" class="btn btn-snd" [routerLink]="'/signup'">Eres nuevo? Registrate acá</button>
+      <button mat-raised-button type="submit" class="btn btn-trd">Olvidaste la contraseña?</button>
 
     </div>
     <mat-label id="msg_bar" *ngIf="progress_bar==true">Cargando...</mat-label>
