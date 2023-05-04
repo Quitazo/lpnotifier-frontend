@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {createClient, SupabaseClient} from "@supabase/supabase-js";
+import {createClient, PostgrestError, SupabaseClient} from "@supabase/supabase-js";
+import {licitacion} from "./licitacion";
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,11 @@ export class LicitacionService {
     this.supabase = createClient(this.supabaseURL, this.supabaseKEY);
   }
 
-  async getTodos() {
+  async getTodos(): Promise<{ licitaciones: any[] | null, error: PostgrestError | null }> {
     let { data: licitaciones, error } = await this.supabase
-      .from('licitaciones').select('*')
-    return { licitaciones, error };
+      .from('licitaciones').select('*');
+    if (error) return { licitaciones: null, error };
+
+    return { licitaciones, error: null };
   }
 }

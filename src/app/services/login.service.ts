@@ -14,7 +14,6 @@ export class LoginService {
   constructor(private http:HttpClient) {
   }
   public generateToken(loginData:any) {
-    console.log("Datos de login services " + loginData);
     return this.http.post(`${this.apiServerUrl}/auth/generate-token`,loginData);
   }
 

@@ -2,9 +2,10 @@
   <div class="user_panel">
     <form (ngSubmit)="formModUser()" class="form_login" [formGroup]="userMod">
       <mat-form-field appearance="outline">
-        <mat-label>Correo</mat-label>
-        <input matInput placeholder="correo@example.com" formControlName="email" ngModel required>
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="name-example" formControlName="name" ngModel required>
       </mat-form-field>
+
       <mat-form-field appearance="outline">
         <mat-label>Correo</mat-label>
         <input matInput placeholder="correo@example.com" formControlName="email" ngModel required>
@@ -18,15 +19,12 @@
         </button>
       </mat-form-field>
 
-      <button mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Iniciar Sesión</button>
-      <div id="form_check_container">
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="dropdownCheck">
-          <label class="form-check-label" for="dropdownCheck">
-            Recordar usuario
-          </label>
-        </div>
-      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Telefono</mat-label>
+        <input matInput placeholder="300xxxxxxx" formControlName="telefono" ngModel>
+      </mat-form-field>
+
+      <button mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Actualizar información</button>
     </form>
     <div id="image_user">
       <mat-icon>person</mat-icon>

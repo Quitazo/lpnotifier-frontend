@@ -23,6 +23,7 @@
     "@fontsource/press-start-2p": "^4.5.11",
     "@supabase/supabase-js": "^2.10.0",
     "bootstrap-icons": "^1.9.1",
+    "crypto-js": "^4.1.1",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.4.8",
     "tslib": "^2.3.0",

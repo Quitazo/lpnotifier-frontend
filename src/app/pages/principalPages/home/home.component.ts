@@ -23,14 +23,34 @@ export class HomeComponent implements OnInit {
   constructor(private licitacionService:LicitacionService) {
 
   }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  ngOnInit(): void {
-    this.getLicitaciones();
-    console.log(this.licitaciones[0]);
+  async ngOnInit() {
+    // const { licitaciones, error } = await this.licitacionService.getTodos();
+    // if (error) {
+    //   console.error(error);
+    // } else if (licitaciones && Array.isArray(licitaciones)) {
+    //   this.licitaciones = licitaciones.map((licitacion: any) => ({
+    //     id_proceso: licitacion.id_proceso,
+    //     entidad: licitacion.entidad,
+    //     nit_entidad: licitacion.nit_entidad,
+    //     nombre_procedimiento: licitacion.nombre_procedimiento,
+    //     fase: licitacion.fase,
+    //     fecha_publicacion: licitacion.fecha_publicacion,
+    //     precio_base: licitacion.precio_base,
+    //     justificacion_modalidad: licitacion.justificacion_modalidad,
+    //     duracion: licitacion.duracion,
+    //     unidad_duracion: licitacion.unidad_duracion,
+    //     ciudad_de_la_unidad: licitacion.ciudad_de_la_unidad,
+    //     nombre_de_la_unidad: licitacion.nombre_de_la_unidad,
+    //     tipo_contrato: licitacion.tipo_contrato,
+    //     url: licitacion.url
+    //   }));
+    // }
   }
 
   activeFilterEvent(event: Event) {
@@ -42,18 +62,5 @@ export class HomeComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
-  }
-
-  public getLicitaciones(): void {
-    this.licitacionService.getTodos().then(data => {
-      data.licitaciones?.map(licitacion => {
-        this.licitaciones.push([licitacion['id_proceso'], licitacion["entidad"], licitacion["nit_entidad"], licitacion["nombre_procedimiento"], licitacion["fase"], licitacion["fecha_publicacion"],
-          licitacion["precio_base"], licitacion["justificacion_modalidad"], licitacion["duracion"], licitacion["unidad_duracion"], licitacion["ciudad_de_la_unidad"], licitacion["nombre_de_la_unidad"],
-          licitacion["tipo_contrato"], licitacion["url"]]);
-      });
-      console.log(this.licitaciones);
-    }).catch(reason => {
-      console.log(reason);
-    });
   }
 }

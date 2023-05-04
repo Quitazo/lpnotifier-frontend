@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {LoginService} from "../../../services/login.service";
+import {switchMap} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -38,38 +39,38 @@ export class LoginComponent implements OnInit {
   }
 
   formLogin() {
-      this.progress_bar = true;
-      this.loginService.generateToken(this.userForm.getRawValue()).subscribe(
-      (data:any) => {
-        this.loginService.loginUser(data.token);
-        this.loginService.getCurrentUser().subscribe((user:any) => {
-          this.loginService.setUser(user);
+    this.progress_bar = true;
 
-          console.log(this.loginService.loginUser(data.token));
-          if(this.loginService.getUserRole() == 'USER'){
-            //user dashboard
-            this.progress_bar = false;
-            this.router.navigate(['user']);
-            this.loginService.loginStatusSubjec.next(true);
-          }
-          else if(this.loginService.getUserRole() == 'ADMIN'){
-            //dashboard admin
-            this.progress_bar = false;
-            this.router.navigate(['admin']);
-            this.loginService.loginStatusSubjec.next(true);
-          }
-          else{
-            this.progress_bar = false;
-            this.loginService.logout();
-          }
-        })
-      },(error) => {
+    this.loginService.generateToken(this.userForm.getRawValue()).pipe(
+      switchMap((data: any) => {
+        this.loginService.loginUser(data.token);
+        return this.loginService.getCurrentUser();
+      })
+    ).subscribe((user: any) => {
+      this.loginService.setUser(user);
+
+      if (this.loginService.getUserRole() == 'USER') {
+        //user dashboard
         this.progress_bar = false;
-        this.snack.open('Detalles inválidos , vuelva a intentar !!\n'+ error,'Aceptar',{
-          duration:3000
-        });
+        this.router.navigate(['user']);
+        this.loginService.loginStatusSubjec.next(true);
       }
-    )
+      else if (this.loginService.getUserRole() == 'ADMIN') {
+        //dashboard admin
+        this.progress_bar = false;
+        this.router.navigate(['admin']);
+        this.loginService.loginStatusSubjec.next(true);
+      }
+      else {
+        this.progress_bar = false;
+        this.loginService.logout();
+      }
+    }, (error) => {
+      this.progress_bar = false;
+      this.snack.open('Detalles inválidos, vuelva a intentar!!\n' + error, 'Aceptar', {
+        duration: 3000
+      });
+    });
   }
 }
 

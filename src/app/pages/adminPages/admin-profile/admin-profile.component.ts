@@ -20,6 +20,7 @@ export class AdminProfileComponent implements OnInit {
       name : new FormControl('', [Validators.required]),
       email : new FormControl('', [Validators.required, Validators.email]),
       pw : new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
+      telefono: new FormControl('', [Validators.minLength(6), Validators.maxLength(20)]),
     });
   }
 
