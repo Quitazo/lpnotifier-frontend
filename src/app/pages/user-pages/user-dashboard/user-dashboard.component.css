@@ -1,0 +1,17 @@
+.table_lp {
+  width: 100%;
+  table-layout: auto;
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 8px 16px;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.table_column {
+  padding: 5px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  font-size: 88%;
+}

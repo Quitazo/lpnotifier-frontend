@@ -15,10 +15,8 @@ export class LicitacionService {
   }
 
   async getTodos(): Promise<{ licitaciones: any[] | null, error: PostgrestError | null }> {
-    let { data: licitaciones, error } = await this.supabase
-      .from('licitaciones').select('*');
+    let { data: licitaciones, error } = await this.supabase.from('licitaciones').select('*');
     if (error) return { licitaciones: null, error };
-
-    return { licitaciones, error: null };
+    else return { licitaciones, error: null };
   }
 }

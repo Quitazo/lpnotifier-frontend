@@ -5,14 +5,20 @@ import { userService } from "../../../services/user.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import Swal from "sweetalert2";
 
-function MatchValidator(source: string, target: string): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const sourceCtrl = control.get(source);
-    const targetCtrl = control.get(target);
+function MatchValidator(controlName: string, matchingControlName: string) {
+  return (formGroup: FormGroup) => {
+    const control = formGroup.get(controlName);
+    const matchingControl = formGroup.get(matchingControlName);
 
-    return sourceCtrl && targetCtrl && sourceCtrl.value !== targetCtrl.value
-      ? { mismatch: true }
-      : null;
+    if (matchingControl?.errors && !matchingControl.errors['not_matching']) {
+      return;
+    }
+
+    if (control?.value !== matchingControl?.value) {
+      matchingControl?.setErrors({ not_matching: true });
+    } else {
+      matchingControl?.setErrors(null);
+    }
   };
 }
 
@@ -29,52 +35,51 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userServices: userService, private fb: FormBuilder, private snack: MatSnackBar) {
     this.userForm = this.fb.group({
-      name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
-      username: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
-      email : new FormControl('', [Validators.required, Validators.email]),
-      pw : new FormControl('', [Validators.required]),
-      pw2 : new FormControl('', [Validators.required]),
-      phone : new FormControl(null, [Validators.maxLength(15)])
-    },
-      {
-          validators: [MatchValidator('password', 'confirmPassword')]
-      });
+      name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]],
+      username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+      email: ['', [Validators.required, Validators.email]],
+      pw: ['', Validators.required],
+      pw2: ['', Validators.required],
+      phone: [null, [Validators.maxLength(15)]]
+    }, {
+      validators: [MatchValidator('pw', 'pw2')]
+    });
   }
 
   ngOnInit(): void { }
 
   getErrorNameMessage() {
     if (this.userForm.get('name')?.hasError('required')) {
-      return 'You must enter a Name';
+      return 'Es necesario insertar un nombre.';
     }
-    return this.userForm.get('name')?.hasError('name') ? 'Not a valid name' : '';
+    return this.userForm.get('name')?.hasError('name') ? 'No es un nombre valido.' : '';
   }
   getErrorUsernameMessage() {
     if (this.userForm.get('username')?.hasError('required')) {
-      return 'You must enter a Username';
+      return 'Es necesario ingresar un Username.';
     }
-    return this.userForm.get('name')?.hasError('username') ? 'Not a valid username' : '';
+    return this.userForm.get('name')?.hasError('username') ? 'El username ingresado no es valido.' : '';
   }
   getErrorEmailMessage() {
     if (this.userForm.get('email')?.hasError('required')) {
-      return 'You must enter a Email';
+      return 'Es necesario ingresar un Email.';
     }
-    return this.userForm.get('email')?.hasError('email') ? 'Not a valid email' : '';
+    return this.userForm.get('email')?.hasError('email') ? 'El Email ingresado no es valido.' : '';
   }
   getErrorPwMessage() {
     if (this.userForm.get('pw')?.hasError('required')) {
-      return 'You must enter a Password';
+      return 'Es necesario ingresar una Contraseña.';
     }
-    return this.userForm.get('pw')?.hasError('password') ? 'Not a valid password' : '';
+    return this.userForm.get('pw')?.hasError('password') ? 'La contraseña ingresada no es valida.' : '';
   }
   getErrorPwsMessage() {
     if (this.userForm.get('pw2')?.hasError('required')) {
-      return 'You must enter a ConfirmPassword';
+      return 'Es necesario confirmar la Contraseña.';
     }
-    return this.userForm.get('pw2')?.hasError('not_matching') ? 'The password doesn\'t match!' : '';
+    return this.userForm.get('pw2')?.hasError('not_matching') ? 'Las contraseñas no concuerdan!' : '';
   }
-  get getPasswordMatchError() {
-    return (this.userForm.getError('mismatch') && this.userForm.get('confirmPassword')?.touched);
+  get passwordMatchError() {
+    return this.userForm.getError('mismatch') && this.userForm.get('confirmPassword')?.touched;
   }
 
   formSubmit() {

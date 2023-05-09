@@ -11,11 +11,11 @@ import {licitacion} from "../../../services/licitacion";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  licitaciones: licitacion[] = [];
+  licitList: licitacion[] = [];
 
   displayedColumns: string[] = ['id_proceso', 'entidad', 'nit_entidad', 'nombre_procedimiento', 'fase', 'fecha_publicacion', 'precio_base','justificacion_modalidad',
     'duracion', 'unidad_duracion', 'ciudad_de_la_unidad', 'nombre_de_al_unidad', 'tipo_contrato', 'url'];
-  dataSource = new MatTableDataSource<licitacion>(this.licitaciones);
+  dataSource = new MatTableDataSource<licitacion>(this.licitList);
 
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
   @ViewChild(MatSort) sort = new MatSort();
@@ -24,33 +24,32 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
   async ngOnInit() {
-    // const { licitaciones, error } = await this.licitacionService.getTodos();
-    // if (error) {
-    //   console.error(error);
-    // } else if (licitaciones && Array.isArray(licitaciones)) {
-    //   this.licitaciones = licitaciones.map((licitacion: any) => ({
-    //     id_proceso: licitacion.id_proceso,
-    //     entidad: licitacion.entidad,
-    //     nit_entidad: licitacion.nit_entidad,
-    //     nombre_procedimiento: licitacion.nombre_procedimiento,
-    //     fase: licitacion.fase,
-    //     fecha_publicacion: licitacion.fecha_publicacion,
-    //     precio_base: licitacion.precio_base,
-    //     justificacion_modalidad: licitacion.justificacion_modalidad,
-    //     duracion: licitacion.duracion,
-    //     unidad_duracion: licitacion.unidad_duracion,
-    //     ciudad_de_la_unidad: licitacion.ciudad_de_la_unidad,
-    //     nombre_de_la_unidad: licitacion.nombre_de_la_unidad,
-    //     tipo_contrato: licitacion.tipo_contrato,
-    //     url: licitacion.url
-    //   }));
-    // }
+    const { licitaciones, error } = await this.licitacionService.getTodos();
+    if (error) {
+      console.error(error);
+    } else if (licitaciones && Array.isArray(licitaciones)) {
+      console.log(licitaciones);
+      this.licitList = licitaciones.map((licitacion: licitacion) => ({
+        id_proceso: licitacion.id_proceso,
+        entidad: licitacion.entidad,
+        nit_entidad: licitacion.nit_entidad,
+        nombre_procedimiento: licitacion.nombre_procedimiento,
+        fase: licitacion.fase,
+        fecha_publicacion: licitacion.fecha_publicacion,
+        precio_base: licitacion.precio_base,
+        justificacion_modalidad: licitacion.justificacion_modalidad,
+        duracion: licitacion.duracion,
+        unidad_de_duracion: licitacion.unidad_de_duracion,
+        ciudad_de_la_unidad: licitacion.ciudad_de_la_unidad,
+        nombre_de_la_unidad: licitacion.nombre_de_la_unidad,
+        tipo_de_contrato: licitacion.tipo_de_contrato,
+        url: licitacion.url
+      }));
+      this.dataSource = new MatTableDataSource<licitacion>(this.licitList);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
   }
 
   activeFilterEvent(event: Event) {

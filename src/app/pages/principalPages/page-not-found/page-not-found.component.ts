@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import {LoginService} from "../../../services/login.service";
 
 @Component({
   selector: 'app-page-not-found',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private loginService:LoginService) { }
 
   ngOnInit(): void {
   }
 
+  goBack() {
+    if (!this.loginService.isLoggedIn()){
+      this.router.navigate(['..']);
+    }else {
+      if (this.loginService.getUserRole() == 'ADMIN'){
+        this.router.navigate(['/admin'])
+      }else if (this.loginService.getUserRole() == 'USER'){
+        this.router.navigate(['/user'])
+      }
+    }
+  }
 }
