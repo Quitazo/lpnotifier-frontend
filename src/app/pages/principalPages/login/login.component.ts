@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {LoginService} from "../../../services/login.service";
 import {switchMap} from "rxjs";
+import {user} from "../../../services/user";
 
 @Component({
   selector: 'app-login',
@@ -40,37 +41,44 @@ export class LoginComponent implements OnInit {
 
   formLogin() {
     this.progress_bar = true;
-
     this.loginService.generateToken(this.userForm.getRawValue()).pipe(
       switchMap((data: any) => {
         this.loginService.loginUser(data.token);
+        this.loginService.getUserRole(data.token).subscribe((rol) => {
+          if (rol === 'USER') {
+            // user dashboard
+            this.router.navigate(['user']);
+            this.loginService.loginStatusSubjec.next(true);
+          } else if (rol === 'ADMIN') {
+            // dashboard admin
+            this.router.navigate(['admin']);
+            this.loginService.loginStatusSubjec.next(true);
+          } else {
+            this.loginService.logout();
+            this.loginService.loginStatusSubjec.next(false);
+          }
+          this.progress_bar = false;
+        });
         return this.loginService.getCurrentUser();
       })
-    ).subscribe((user: any) => {
+    ).subscribe((user: user) => {
       this.loginService.setUser(user);
-
-      if (this.loginService.getUserRole() == 'USER') {
-        //user dashboard
-        this.progress_bar = false;
-        this.router.navigate(['user']);
-        this.loginService.loginStatusSubjec.next(true);
-      }
-      else if (this.loginService.getUserRole() == 'ADMIN') {
-        //dashboard admin
-        this.progress_bar = false;
-        this.router.navigate(['admin']);
-        this.loginService.loginStatusSubjec.next(true);
-      }
-      else {
-        this.progress_bar = false;
-        this.loginService.logout();
-      }
     }, (error) => {
       this.progress_bar = false;
       this.snack.open('Detalles inválidos, vuelva a intentar!!\n' + error, 'Aceptar', {
         duration: 3000
       });
     });
+  }
+
+  // Llama a la función dos veces donde sea necesario
+  // Por ejemplo, al hacer clic en un botón o después de un cierto evento.
+  onLoginProcess() {
+    this.formLogin();
+    // Añade un retraso antes de llamar la función nuevamente.
+    setTimeout(() => {
+      this.formLogin();
+    }, 1000); // 5000 ms (5 segundos) de retraso antes de la segunda llamada.
   }
 }
 

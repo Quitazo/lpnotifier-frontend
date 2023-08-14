@@ -1,5 +1,39 @@
-<div class="perfil">
-  <h2>Usuario Name</h2>
-  <img [src]="" alt="Foto de perfil">
-  <p>Datos a editar</p>
+<div class="container_profile">
+  <div class="user_panel">
+    <form (ngSubmit)="formModUser()" class="form_login" [formGroup]="userMod">
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="name-example" formControlName="name" ngModel required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Correo</mat-label>
+        <input matInput placeholder="correo@example.com" formControlName="email" ngModel required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="pw" ngModel required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Telefono</mat-label>
+        <input matInput placeholder="300xxxxxxx" formControlName="telefono" ngModel>
+      </mat-form-field>
+
+      <button mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Actualizar información</button>
+    </form>
+    <div id="image_user">
+      <mat-icon>person</mat-icon>
+    </div>
+    <div id="user_data">
+      <p>admin-profile works!</p>
+      <p>Nombre: </p>
+      <p>Correo: </p>
+      <p>Telefono: </p>
+    </div>
+  </div>
 </div>

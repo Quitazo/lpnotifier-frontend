@@ -37,22 +37,6 @@ export class AdminProfileComponent implements OnInit {
           this.loginService.setUser(user);
 
           console.log(this.loginService.loginUser(data.token));
-          if(this.loginService.getUserRole() == 'USER'){
-            //user dashboard
-            this.progress_bar = false;
-            this.router.navigate(['user']);
-            this.loginService.loginStatusSubjec.next(true);
-          }
-          else if(this.loginService.getUserRole() == 'ADMIN'){
-            //dashboard admin
-            this.progress_bar = false;
-            this.router.navigate(['admin']);
-            this.loginService.loginStatusSubjec.next(true);
-          }
-          else{
-            this.progress_bar = false;
-            this.loginService.logout();
-          }
         })
       },(error) => {
         this.progress_bar = false;

@@ -33,3 +33,18 @@ h1,h2,h3,h4,h5,h6 {
   flex-direction: row;
   width: 20%;
 }
+.mat-header-cell {
+  text-align: center;
+}
+
+.table_column {
+  font-size: 88%;
+  text-align: justify;
+  padding-inline: 10px;
+}
+
+.table_column:nth-child(4) {
+  font-size: 82%;
+  text-align: justify;
+  padding-inline: 10px;
+}

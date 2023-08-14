@@ -11,6 +11,7 @@ import {AdminProfileComponent} from "./pages/adminPages/admin-profile/admin-prof
 import {UserProfileComponent} from "./pages/user-pages/user-profile/user-profile.component";
 import {UserHomeComponent} from "./pages/user-pages/user-home/user-home.component";
 import {UserDashboardComponent} from "./pages/user-pages/user-dashboard/user-dashboard.component";
+import {VerifyComponent} from "./pages/principalPages/verify/verify.component";
 
 
 const principalRoutes: Routes = [
@@ -53,6 +54,11 @@ const principalRoutes: Routes = [
     pathMatch:'full',
     component: UserProfileComponent,
     canActivate:[NormalGuard],
+  },
+  {
+    path: 'verify',
+    pathMatch:'full',
+    component: VerifyComponent,
   },
   {
     path:'',

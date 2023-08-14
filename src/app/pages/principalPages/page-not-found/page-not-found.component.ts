@@ -18,10 +18,15 @@ export class PageNotFoundComponent implements OnInit {
     if (!this.loginService.isLoggedIn()){
       this.router.navigate(['..']);
     }else {
-      if (this.loginService.getUserRole() == 'ADMIN'){
-        this.router.navigate(['/admin'])
-      }else if (this.loginService.getUserRole() == 'USER'){
-        this.router.navigate(['/user'])
+      const token = this.loginService.getToken();
+      if (token != null){
+        this.loginService.getUserRole(token).subscribe((rol) => {
+          if (rol == 'ADMIN'){
+            this.router.navigate(['/admin'])
+          }else if (rol == 'USER'){
+            this.router.navigate(['/user'])
+          }
+        })
       }
     }
   }

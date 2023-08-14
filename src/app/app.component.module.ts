@@ -30,6 +30,8 @@ import { DashboardComponent } from './pages/adminPages/dashboard/dashboard.compo
 import { UserDashboardComponent } from './pages/user-pages/user-dashboard/user-dashboard.component';
 import { AdminProfileComponent } from './pages/adminPages/admin-profile/admin-profile.component';
 import { UserProfileComponent } from './pages/user-pages/user-profile/user-profile.component';
+import { VerifyComponent } from './pages/principalPages/verify/verify.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { UserProfileComponent } from './pages/user-pages/user-profile/user-profi
     AdminProfileComponent,
     UserProfileComponent,
     PageNotFoundComponent,
+    VerifyComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -65,7 +68,10 @@ import { UserProfileComponent } from './pages/user-pages/user-profile/user-profi
     MatSortModule,
     MatSnackBarModule,
   ],
-  providers: [authInterceptorProviders],
+  providers: [
+    authInterceptorProviders,
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppComponentModule { }

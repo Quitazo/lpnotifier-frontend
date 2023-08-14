@@ -1,2 +1,98 @@
-<button routerLink="/user_dashboard/profile">KYC</button>
-<p>user-dashboard works!</p>
+<div class="content" role="main">
+  <div class="container">
+    <h2>Sistema de licitaciones Colombia</h2>
+    <div class="table-header">
+      <mat-form-field>
+        <input matInput (keyup)="activeFilterEvent($event)" placeholder="Filter">
+      </mat-form-field>
+      <mat-icon>search</mat-icon>
+    </div>
+    <div class="mat-elevation-z8">
+      <table class="table_lp" mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="id_proceso">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">ID Proceso</th>
+          <td class="table_column" mat-cell *matCellDef="let licitacion">{{licitacion.id_proceso}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="entidad">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">Nombre Entidad</th>
+          <td class="table_column" mat-cell *matCellDef="let licitacion">{{licitacion.entidad}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nit_entidad">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">NIT Entidad</th>
+          <td class="table_column" mat-cell *matCellDef="let licitacion">{{licitacion.nit_entidad}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre_procedimiento">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">Nombre Procedimiento</th>
+          <td class="table_column" mat-cell *matCellDef="let licitacion">{{licitacion.nombre_procedimiento}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fase">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">Fase</th>
+          <td class="table_column" mat-cell *matCellDef="let licitacion">{{licitacion.fase}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="precio_base">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">Precio Base</th>
+          <td class="table_column" mat-cell *matCellDef="let licitacion">{{licitacion.precio_base}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="justificacion_modalidad">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">Justificacion Modalidad</th>
+          <td class="table_column" mat-cell *matCellDef="let licitacion">{{licitacion.justificacion_modalidad}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="duracion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">Duracion</th>
+          <td class="table_column" mat-cell *matCellDef="let licitacion">{{licitacion.duracion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="unidad_duracion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">Unidad Duracion</th>
+          <td class="table_column" mat-cell *matCellDef="let licitacion">{{licitacion.unidad_de_duracion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="ciudad_de_la_unidad">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">Cuidad De La Unidad</th>
+          <td class="table_column" mat-cell *matCellDef="let licitacion">{{licitacion.ciudad_de_la_unidad}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre_de_al_unidad">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">Nombre De La Unidad</th>
+          <td class="table_column" mat-cell *matCellDef="let licitacion">{{licitacion.nombre_de_la_unidad}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipo_contrato">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">Tipo Contrato</th>
+          <td class="table_column" mat-cell *matCellDef="let licitacion">{{licitacion.tipo_de_contrato}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha_publicacion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">Fecha Publicación</th>
+          <td class="table_column" mat-cell *matCellDef="let licitacion">{{licitacion.fecha_publicacion}}</td>
+        </ng-container>
+
+        <ng-container class="table_column" matColumnDef="url">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="">URL</th>
+          <td mat-cell *matCellDef="let licitacion">
+            <a href="{{licitacion.url}}" target="_blank" >
+              <button mat-stroked-button color="primary">Enlace</button>
+            </a>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator
+        [pageIndex]="10"
+        [pageSizeOptions]="[10, 25, 50, 100]"
+        showFirstLastButtons>
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+

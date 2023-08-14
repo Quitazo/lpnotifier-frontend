@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {licitacion} from "../../../services/licitacion";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
+import {LicitacionService} from "../../../services/licitacion.service";
 
 @Component({
   selector: 'app-root-user-dashboard',
@@ -6,10 +11,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-dashboard.component.css']
 })
 export class UserDashboardComponent implements OnInit {
+  licitList: licitacion[] = [];
 
-  constructor() { }
+  displayedColumns: string[] = ['id_proceso', 'entidad', 'nit_entidad', 'nombre_procedimiento', 'fase', 'fecha_publicacion', 'precio_base','justificacion_modalidad',
+    'duracion', 'unidad_duracion', 'ciudad_de_la_unidad', 'nombre_de_al_unidad', 'tipo_contrato', 'url'];
+  dataSource = new MatTableDataSource<licitacion>(this.licitList);
 
-  ngOnInit(): void {
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort = new MatSort();
+
+  constructor(private licitacionService:LicitacionService) {
+
   }
 
+  async ngOnInit() {
+    this.licitacionService.getLicitaciones().subscribe((licitaciones: licitacion[]) =>{
+      this.dataSource = new MatTableDataSource<licitacion>(licitaciones);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  activeFilterEvent(event: Event) {
+    const input = (event.target as HTMLInputElement).value;
+    this.applyFilter(input);
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
 }

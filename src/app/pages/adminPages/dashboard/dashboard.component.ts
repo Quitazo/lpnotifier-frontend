@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   progressBar = false;
   users: user[] = [];
 
-  displayedColumns: string[] = ['id', 'name', 'email', 'enable', 'username', 'phone'];
+  displayedColumns: string[] = ['id', 'name', 'email', 'enable', 'username', 'phone', 'opciones'];
   dataSource = new MatTableDataSource<user>(this.users);
 
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
@@ -51,6 +51,21 @@ export class DashboardComponent implements OnInit {
         this.dataSource.data = response;
         this.progressBar=false;
 
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        this.progressBar=false;
+      }
+    );
+  }
+
+  public delUser(id: number): void {
+    this.progressBar=true;
+    this.usrServices.deleteUser(id).subscribe(
+      () => {
+        this.progressBar=false;
+        alert("El usuario con el ID "+id+" ha sido eliminado exitosamente.");
+        this.getUsers();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

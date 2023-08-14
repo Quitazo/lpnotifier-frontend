@@ -31,7 +31,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Ingresa una contraseña</mat-label>
             <input matInput #inputPw [type]="hide ? 'password' : 'text'" formControlName="pw" ngModel required>
-            <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <a mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </a>
             <mat-hint align="end">{{inputPw.value.length || 0}}/40</mat-hint>
@@ -41,7 +41,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Confirmar la contraseña</mat-label>
             <input matInput #inputPw2 [type]="hide2 ? 'password' : 'text'" formControlName="pw2" required>
-            <a mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+            <a mat-icon-button matSuffix type="button" (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
               <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </a>
             <mat-hint align="end">{{inputPw2.value.length || 0}}/40</mat-hint>

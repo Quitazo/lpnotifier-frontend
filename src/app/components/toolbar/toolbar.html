@@ -1,13 +1,13 @@
 <!--Toolbar-->
 <div class="toolbar" role="banner">
-  <a *ngIf="!loginService.isLoggedIn()" aria-label="AppComponent" [routerLink]="'/'" title="Inicio">
+  <a *ngIf="!isLogin" aria-label="AppComponent" [routerLink]="'/'" title="Inicio">
     <img class="logo-principal" src="../../../assets/logo-lp.png" alt="">
   </a>
-  <div *ngIf="loginService.getUserRole">
-    <a *ngIf="loginService.isLoggedIn() && loginService.getUserRole() == 'ADMIN'" aria-label="AppComponent" [routerLink]="'/admin'" title="Inicio">
+  <div *ngIf="userRole">
+    <a *ngIf="isLogin && userRole == 'ADMIN'" aria-label="AppComponent" [routerLink]="'/admin'" title="Inicio">
       <img class="logo-principal" src="../../../assets/logo-lp.png" alt="">
     </a>
-    <a *ngIf="loginService.isLoggedIn() && loginService.getUserRole() == 'USER'" aria-label="AppComponent" [routerLink]="'/user'" title="Inicio">
+    <a *ngIf="isLogin && userRole == 'USER'" aria-label="AppComponent" [routerLink]="'/user'" title="Inicio">
       <img class="logo-principal" src="../../../assets/logo-lp.png" alt="">
     </a>
   </div>
@@ -19,23 +19,23 @@
       <mat-icon id="login-logo">reorder</mat-icon>
     </button>
     <mat-menu #menu="matMenu" xPosition="before">
-      <button *ngIf="!loginService.isLoggedIn()" mat-menu-item aria-label="User page" routerLink="/signup" >
+      <button *ngIf="!isLogin" mat-menu-item aria-label="User page" routerLink="/signup" >
         <mat-icon>person_add</mat-icon>
         <span>Registrarse</span>
       </button>
-      <button *ngIf="!loginService.isLoggedIn()" mat-menu-item aria-label="User page" routerLink="/login" >
+      <button *ngIf="!isLogin" mat-menu-item aria-label="User page" routerLink="/login" >
         <mat-icon>person</mat-icon>
         <span>Iniciar Sesión</span>
       </button>
-      <button *ngIf="loginService.isLoggedIn() && loginService.getUserRole() == 'ADMIN'" mat-menu-item aria-label="Admin profile" [routerLink]="['admin','profile']" routerLinkActive="active">
+      <button *ngIf="isLogin && userRole == 'ADMIN'" mat-menu-item aria-label="Admin profile" [routerLink]="['admin','profile']" routerLinkActive="active">
         <mat-icon>account_box</mat-icon>
         <span>Perfil</span>
       </button>
-      <button *ngIf="loginService.isLoggedIn() && loginService.getUserRole() == 'USER'" mat-menu-item aria-label="User profile" [routerLink]="['user','profile']" routerLinkActive="active">
+      <button *ngIf="isLogin && userRole == 'USER'" mat-menu-item aria-label="User profile" [routerLink]="['user','profile']" routerLinkActive="active">
         <mat-icon>account_box</mat-icon>
         <span>Perfil</span>
       </button>
-      <button *ngIf="loginService.isLoggedIn()" mat-menu-item aria-label="User page" (click)="logout()">
+      <button *ngIf="isLogin" mat-menu-item aria-label="User page" (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
         <span>Cerrar Sesión</span>
       </button>

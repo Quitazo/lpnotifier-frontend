@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiBaseUrl: 'http://localhost:8080/api/v1',
+  apiAuthUrl: 'http://localhost:8080/api/v1/auth',
   localKey: 'c1l4o$19!832ajs@46fvdda'
 };
 

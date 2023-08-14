@@ -1,10 +1,63 @@
 .container_profile {
   display: flex;
   flex-direction: row;
+  height: 100vh;
+  justify-content: space-evenly;
 }
+.user_panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user_preferences {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_profile {
+  display: flex;
+  flex-direction: column;
+  background-color: #c0c0c0;
+  border: #e3e3e3 10px;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+mat-form-field {
+  background-color: #FFFFFF;
+  padding: 2vh;
+}
+mat-form-field:nth-child(1) {
+  border-radius: 10px 10px 0 0;
+}
+
+#btn_update {
+  margin: 20px;
+  color: cadetblue;
+  border-radius: 12px;
+}
+
 #image_user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px; /* ajusta el ancho según tus necesidades */
+  height: 100px; /* ajusta la altura según tus necesidades */
+  background-color: #ccc; /* opcional: agrega un color de fondo para verificar el tamaño */
+  margin: 5%;
+  border-radius: 100%;
+  border: #FFFFFF 2px;
 
 }
+#img_person {
+  width: 100%;
+  height: 100%;
+  font-size: 48px; /* ajusta el tamaño de la fuente según tus necesidades */
+}
+
 #user_data {
-  
+
 }

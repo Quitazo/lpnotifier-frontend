@@ -5,7 +5,7 @@
       <img id="fondo_login" src="../../../../assets/fondo_login.png" alt=""/>
     </div>
     <div class="form_container">
-      <form (ngSubmit)="formLogin()" class="form_login" [formGroup]="userForm">
+      <form (ngSubmit)="onLoginProcess()" class="form_login" [formGroup]="userForm">
         <mat-form-field appearance="outline">
           <mat-label>Correo</mat-label>
           <input matInput placeholder="correo@example.com" formControlName="email" ngModel required>
@@ -15,7 +15,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Contraseña</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" formControlName="pw" ngModel required>
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                   [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>

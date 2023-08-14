@@ -29,8 +29,8 @@ function MatchValidator(controlName: string, matchingControlName: string) {
 })
 export class RegisterComponent implements OnInit {
   progress_bar = false;
-  hide = false;
-  hide2 = false;
+  hide = true;
+  hide2 = true;
   public userForm: FormGroup;
 
   constructor(private userServices: userService, private fb: FormBuilder, private snack: MatSnackBar) {

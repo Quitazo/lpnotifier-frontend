@@ -1,20 +1,28 @@
 <div class="container_profile">
   <div class="user_panel">
-    <form (ngSubmit)="formModUser()" class="form_login" [formGroup]="userMod">
+    <div id="image_user">
+      <mat-icon id="img_person">person</mat-icon>
+    </div>
+    <form (ngSubmit)="formModUser()" class="form_profile" [formGroup]="userMod">
       <mat-form-field appearance="outline">
-        <mat-label>Username</mat-label>
-        <input matInput placeholder="name-example" formControlName="name" ngModel required>
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="nombre" formControlName="name" ngModel required>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Correo</mat-label>
+        <mat-label>Usuario</mat-label>
+        <input matInput placeholder="usuario" formControlName="username" ngModel required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
         <input matInput placeholder="correo@example.com" formControlName="email" ngModel required>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Contraseña</mat-label>
         <input matInput [type]="hide ? 'password' : 'text'" formControlName="pw" ngModel required>
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
@@ -24,19 +32,18 @@
         <input matInput placeholder="300xxxxxxx" formControlName="telefono" ngModel>
       </mat-form-field>
 
-      <button mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Actualizar información</button>
+      <button id="btn_update" mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Actualizar información</button>
     </form>
-    <div id="image_user">
-      <mat-icon>person</mat-icon>
-    </div>
-    <div id="user_data">
-      <p>admin-profile works!</p>
-      <p>Nombre: </p>
-      <p>Correo: </p>
-      <p>Telefono: </p>
-    </div>
   </div>
-  <div class="user_dashboard">
-    <p>Tabla principal</p>
+  <div class="user_preferences">
+    <p>Preferencias del Usuario</p>
+    <p>Compraventa: </p>
+    <p>ND: </p>
+    <p>Obras: </p>
+    <p>Otros Servicios: </p>
+    <p>Seguros: </p>
+    <p>Servicios de Aprovicionamiento: </p>
+    <p>Suministros: </p>
+    <p>Concesión: </p>
   </div>
 </div>
