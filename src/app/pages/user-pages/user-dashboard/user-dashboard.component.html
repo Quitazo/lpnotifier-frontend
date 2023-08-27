@@ -2,10 +2,16 @@
   <div class="container">
     <h2>Sistema de licitaciones Colombia</h2>
     <div class="table-header">
-      <mat-form-field>
-        <input matInput (keyup)="activeFilterEvent($event)" placeholder="Filter">
-      </mat-form-field>
-      <mat-icon>search</mat-icon>
+      <div class="table-search">
+        <mat-form-field>
+          <input matInput (keyup)="activeFilterEvent($event)" placeholder="Filter">
+        </mat-form-field>
+        <mat-icon>search</mat-icon>
+      </div>
+      <div class="table-buttons">
+        <button (click)="loadAll()" mat-raised-button class="btn btn-showAll">Mostrar todas las licitaciones</button>
+        <button (click)="loadPreferences()" mat-raised-button class="btn btn-showPreference">Mostrar unicamente mis preferencias</button>
+      </div>
     </div>
     <div class="mat-elevation-z8">
       <table class="table_lp" mat-table [dataSource]="dataSource" matSort>

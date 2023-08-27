@@ -4,6 +4,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {LicitacionService} from "../../../services/licitacion.service";
+import {LoginService} from "../../../services/login.service";
 
 @Component({
   selector: 'app-root-user-dashboard',
@@ -20,7 +21,7 @@ export class UserDashboardComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
   @ViewChild(MatSort) sort = new MatSort();
 
-  constructor(private licitacionService:LicitacionService) {
+  constructor(private licitacionService:LicitacionService, private loginService:LoginService) {
 
   }
 
@@ -30,6 +31,26 @@ export class UserDashboardComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+  }
+
+  async loadAll() {
+    this.licitacionService.getLicitaciones().subscribe((licitaciones: licitacion[]) =>{
+      this.dataSource = new MatTableDataSource<licitacion>(licitaciones);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  async loadPreferences() {
+    const user = this.loginService.getUser();
+    if (user){
+      const username = user.username;
+      this.licitacionService.getLicitacionesForPreferences(username).subscribe((licitaciones: licitacion[]) =>{
+        this.dataSource = new MatTableDataSource<licitacion>(licitaciones);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+    }
   }
 
   activeFilterEvent(event: Event) {
@@ -42,4 +63,5 @@ export class UserDashboardComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
+
 }

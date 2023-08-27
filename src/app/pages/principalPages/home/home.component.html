@@ -6,6 +6,12 @@
         <input matInput (keyup)="activeFilterEvent($event)" placeholder="Filter">
       </mat-form-field>
       <mat-icon>search</mat-icon>
+<!--      <div class="row">-->
+<!--        <button mat-raised-button type="submit" class="btn btn-showAll">Mostrar todas las licitaciones</button>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <button mat-raised-button type="submit" class="btn btn-showPreference">Mostrar unicamente mis preferencias</button>-->
+<!--      </div>-->
     </div>
     <div class="mat-elevation-z8">
       <table class="table_lp" mat-table [dataSource]="dataSource" matSort>

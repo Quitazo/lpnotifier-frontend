@@ -77,4 +77,13 @@ export class LoginService {
   public getCurrentUser(): Observable<any> {
     return this.http.get(`${this.apiServerUrl}/auth/actual-user`);
   }
+
+  public getUserData(): Observable<any> {
+    return this.http.get(`${this.apiServerUrl}/usr/${this.getUser().username}`);
+  }
+
+  public getPreferences(correo:String) :Observable<String[]>{
+    return this.http.get<String[]>(`${this.apiServerUrl}/usr/preferences/${correo}`);
+  }
+
 }

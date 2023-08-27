@@ -17,4 +17,17 @@ export class LicitacionService {
   public getLicitaciones(): Observable<licitacion[]> {
     return this.http.get<licitacion[]>(`${this.apiServerUrl}/lp/`);
   }
+
+  public getLicitacionesForPreferences(correo:String): Observable<licitacion[]>{
+    return this.http.get<licitacion[]>(`${this.apiServerUrl}/lp/`+correo);
+  }
+
+  public getPreferences(correo:String): Observable<String[]>{
+    return this.http.get<String[]>(`http://localhost:8080/api/v1/usr/preferences/`+correo);
+  }
+
+  public updatePreferences(correo:String, preferences:Boolean[]){
+    return this.http.put(`${this.apiServerUrl}/usr/savepreference/`+correo, preferences);
+  }
+
 }
