@@ -1,35 +1,29 @@
 <div class="container_profile">
   <div class="user_panel">
-    <div id="image_user">
-      <mat-icon id="img_person">person</mat-icon>
+    <div class="image_user">
+      <mat-icon class="img_person">person</mat-icon>
     </div>
+    <h1 class="title">Información del usuario</h1>
+    <hr>
     <form (ngSubmit)="formModUser()" class="form_profile" [formGroup]="userMod">
       <mat-form-field appearance="outline">
         <mat-label>Nombre</mat-label>
-        <input matInput placeholder="nombre" formControlName="name" ngModel required>
+        <input matInput placeholder="nombre" formControlName="name" [value]="this.usr.name">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Usuario</mat-label>
-        <input matInput placeholder="usuario" formControlName="username" ngModel required>
+        <input matInput placeholder="usuario" formControlName="username" [value]="this.usr.username">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="correo@example.com" formControlName="email" ngModel required>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Contraseña</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" formControlName="pw" ngModel required>
-        <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
+        <input matInput placeholder="correo@example.com" [value]="this.usr.email" readonly>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Telefono</mat-label>
-        <input matInput placeholder="300xxxxxxx" formControlName="telefono" ngModel>
+        <input matInput placeholder="300xxxxxxx" formControlName="phone" [value]="this.usr.phone.toString()">
       </mat-form-field>
 
       <button id="btn_update" mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Actualizar información</button>

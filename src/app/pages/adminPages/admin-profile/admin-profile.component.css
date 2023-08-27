@@ -58,12 +58,14 @@ mat-form-field:nth-child(1) {
 #btn_update, #btn_update_Preference {
   margin: 20px;
   color: cadetblue;
+  background-color: white;
   border-radius: 12px;
 }
 
-#image_user {
+.image_user {
   display: flex;
   justify-content: center;
+  align-self: center;
   align-items: center;
   width: 100px; /* ajusta el ancho según tus necesidades */
   height: 100px; /* ajusta la altura según tus necesidades */

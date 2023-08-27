@@ -20,6 +20,9 @@ export class userService {
   public updateUser(usr: user): Observable<user> {
     return this.http.put<user>(`${this.apiServerUrl}/usr`,usr);
   }
+  public updatePw(pws:string[]): Observable<user> {
+    return this.http.put<user>(`${this.apiServerUrl}/usr/updatePw`,pws);
+  }
   public deleteUser(userId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/usr/${userId}`);
   }
