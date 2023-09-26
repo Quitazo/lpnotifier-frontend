@@ -9,10 +9,10 @@ import { Location } from '@angular/common';
   providedIn: 'root'
 })
 export class NormalGuard implements CanActivate {
-  private token = this.loginService.getToken();
   constructor(private loginService:LoginService, private router:Router, private location: Location){
 
   }
+  private token = this.loginService.getToken();
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

@@ -73,7 +73,6 @@ export class LoginService {
     );
   }
 
-
   public getCurrentUser(): Observable<any> {
     return this.http.get(`${this.apiServerUrl}/auth/actual-user`);
   }

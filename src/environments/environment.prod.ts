@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'http://localhost:8080/v0'
+  apiBaseUrl: 'https://lpnotifier-backend-production.up.railway.app/api/v1',
+  localKey: 'c1l4o$19!832ajs@46fvdda'
 };

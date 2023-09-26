@@ -23,7 +23,7 @@ export class LicitacionService {
   }
 
   public getPreferences(correo:String): Observable<String[]>{
-    return this.http.get<String[]>(`http://localhost:8080/api/v1/usr/preferences/`+correo);
+    return this.http.get<String[]>(`${this.apiServerUrl}/usr/preferences/`+correo);
   }
 
   public updatePreferences(correo:String, preferences:Boolean[]){

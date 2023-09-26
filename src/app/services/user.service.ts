@@ -7,7 +7,6 @@ import { environment } from "../../environments/environment";
 @Injectable({providedIn: 'root'})
 export class userService {
   private apiServerUrl = environment.apiBaseUrl;
-  private apiVerifyUrl = environment.apiAuthUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +26,7 @@ export class userService {
     return this.http.delete<void>(`${this.apiServerUrl}/usr/${userId}`);
   }
   public verifyUser(token: string): Observable<string> {
-    console.log('URL '+this.apiVerifyUrl+' TOKEN '+token);
-    return this.http.get<string>(`${this.apiVerifyUrl}/verify?token=${token}`);
+    console.log('URL '+this.apiServerUrl+' TOKEN '+token);
+    return this.http.get<string>(`${this.apiServerUrl}/auth/verify?token=${token}`);
   }
 }
