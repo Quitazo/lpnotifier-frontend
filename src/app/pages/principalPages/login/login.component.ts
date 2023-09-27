@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
     this.progress_bar = true;
     this.loginService.generateToken(this.userForm.getRawValue()).pipe(
       switchMap((data: any) => {
+        console.log("Token "+data.token);
         this.loginService.loginUser(data.token);
         this.loginService.getUserRole(data.token).subscribe((rol) => {
           if (rol === 'USER') {
