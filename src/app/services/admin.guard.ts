@@ -12,12 +12,12 @@ export class AdminGuard implements CanActivate {
   constructor(private loginService:LoginService, private router:Router, private location: Location){
 
   }
-  private token = this.loginService.getToken();
+  private token : string| null = '';
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
+    this.token = this.loginService.getToken();
     if (this.loginService.isLoggedIn() && this.token != null) {
       return this.loginService.getUserRole(this.token).pipe(
         map(rol => {
