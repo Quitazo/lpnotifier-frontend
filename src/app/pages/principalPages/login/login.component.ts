@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
           this.loginService.loginUser(data.token);
           setTimeout(() => {
             this.loginService.getUserRole(data.token).subscribe((rol) => {
+              console.log("ROL "+rol);
               if (rol === 'USER') {
                 // user dashboard
                 this.router.navigate(['user']);

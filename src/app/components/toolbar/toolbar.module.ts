@@ -25,14 +25,16 @@ export class ToolbarModule implements OnInit {
   }
 
   ngOnInit() {
+    // this.isLogin = this.loginService.isLoggedIn();
+    // const token = this.loginService.getToken();
+    //
+    // if (token != null) {
+    //   this.loginService.getUserRole(token).subscribe((role: string) => {
+    //     this.userRole = role;
+    //   });
+    // }
     this.isLogin = this.loginService.isLoggedIn();
-    const token = this.loginService.getToken();
-
-    if (token != null) {
-      this.loginService.getUserRole(token).subscribe((role: string) => {
-        this.userRole = role;
-      });
-    }
+    this.userRole = this.loginService.getUserRole2();
   }
 
   public logout() {
