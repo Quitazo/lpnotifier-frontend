@@ -40,46 +40,48 @@ export class LoginComponent implements OnInit {
   }
 
   formLogin() {
-    this.progress_bar = true;
-    this.loginService.generateToken(this.userForm.getRawValue()).pipe(
-      switchMap((data: any) => {
-        console.log("Token "+data.token);
-        this.loginService.loginUser(data.token);
-        this.loginService.getUserRole(data.token).subscribe((rol) => {
-          if (rol === 'USER') {
-            // user dashboard
-            this.router.navigate(['user']);
-            this.loginService.loginStatusSubjec.next(true);
-          } else if (rol === 'ADMIN') {
-            // dashboard admin
-            this.router.navigate(['admin']);
-            this.loginService.loginStatusSubjec.next(true);
-          } else {
-            this.loginService.logout();
-            this.loginService.loginStatusSubjec.next(false);
-          }
-          this.progress_bar = false;
+    try {
+      this.progress_bar = true;
+      this.loginService.generateToken(this.userForm.getRawValue()).pipe(
+        switchMap((data: any) => {
+          this.loginService.loginUser(data.token);
+          setTimeout(() => {
+            this.loginService.getUserRole(data.token).subscribe((rol) => {
+              if (rol === 'USER') {
+                // user dashboard
+                this.router.navigate(['user']);
+                this.loginService.loginStatusSubjec.next(true);
+              } else if (rol === 'ADMIN') {
+                // dashboard admin
+                this.router.navigate(['admin']);
+                this.loginService.loginStatusSubjec.next(true);
+              } else {
+                this.loginService.logout();
+                this.loginService.loginStatusSubjec.next(false);
+              }
+              this.progress_bar = false;
+            });
+          }, 1000);
+          return this.loginService.getCurrentUser();
+        })
+      ).subscribe((usr: user) => {
+        this.loginService.setUser(usr);
+      }, (error) => {
+        this.progress_bar = false;
+        this.snack.open('Detalles inválidos, vuelva a intentar!!\n' + error, 'Aceptar', {
+          duration: 3000
         });
-        return this.loginService.getCurrentUser();
-      })
-    ).subscribe((user: user) => {
-      this.loginService.setUser(user);
-    }, (error) => {
-      this.progress_bar = false;
-      this.snack.open('Detalles inválidos, vuelva a intentar!!\n' + error, 'Aceptar', {
-        duration: 3000
       });
-    });
+    } catch (e){
+      console.log(e);
+    }
   }
 
-  // Llama a la función dos veces donde sea necesario
-  // Por ejemplo, al hacer clic en un botón o después de un cierto evento.
   onLoginProcess() {
     this.formLogin();
-    // Añade un retraso antes de llamar la función nuevamente.
-    setTimeout(() => {
-      this.formLogin();
-    }, 1000); // 5000 ms (5 segundos) de retraso antes de la segunda llamada.
+    // setTimeout(() => {
+    //   this.formLogin();
+    // }, 1000);
   }
 }
 
