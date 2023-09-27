@@ -53,7 +53,12 @@ export class LoginService {
   }
 
   public getToken() {
-    return localStorage.getItem('token');
+    try {
+      return localStorage.getItem('token');
+    } catch (error) {
+      console.error('Error al acceder a localStorage:', error);
+      return null;
+    }
   }
 
   public getUserRole2(): string {
