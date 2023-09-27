@@ -39,9 +39,10 @@ export class AdminProfileComponent implements OnInit {
   progress_bar = false;
   progress_bar2 = false;
   progress_bar3 = false;
-  preferencias: Preferencia[] = [];
+
   public userMod: FormGroup;
   public pwMod: FormGroup;
+  public preferencias: Preferencia[] = [];
   public preferenciaValores: boolean[] = [];
   public usr: user = {
     name: '',
@@ -176,6 +177,8 @@ export class AdminProfileComponent implements OnInit {
   updatePreference(): void {
     // Convertir los valores de preferencia a un array de booleanos
     this.progress_bar2 = true;
+
+    this.preferenciaValores.splice(0, this.preferencias.length);
     this.preferencias.forEach(preferencia => {
       this.preferenciaValores.push(Boolean(preferencia.valor));
     });
