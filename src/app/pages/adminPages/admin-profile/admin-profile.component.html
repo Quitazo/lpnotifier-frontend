@@ -98,7 +98,7 @@
     <div class="div_preferences">
       <div class="item" *ngFor="let preferencia of preferencias; let i = index">
         <label class="checkbox-label">
-          <input type="checkbox" [(ngModel)]="preferencia?.valor" [checked]="preferencia.valor === 'true' ? true : false">
+          <input type="checkbox" [(ngModel)]="preferencia.valor" [checked]="preferencia.valor === 'true' ? true : false">
           <span>{{ getTextForIndex(i) }} </span>
         </label>
       </div>
