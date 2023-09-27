@@ -8,22 +8,22 @@
     <form (ngSubmit)="formModUser()" class="form_profile" [formGroup]="userMod">
       <mat-form-field appearance="outline">
         <mat-label>Nombre</mat-label>
-        <input matInput placeholder="nombre" formControlName="name" [value]="this.usr.name">
+        <input matInput placeholder="nombre" formControlName="name" [value]="this.usr?.name?.toString() || ''">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Usuario</mat-label>
-        <input matInput placeholder="usuario" formControlName="username" [value]="this.usr.username">
+        <input matInput placeholder="usuario" formControlName="username" [value]="this.usr?.username?.toString() || ''">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="correo@example.com" [value]="this.usr.email" readonly>
+        <input matInput placeholder="correo@example.com" [value]="this.usr?.email?.toString() || ''" readonly>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Telefono</mat-label>
-        <input matInput placeholder="300xxxxxxx" formControlName="phone" [value]="this.usr.phone.toString()">
+        <input matInput placeholder="300xxxxxxx" formControlName="phone" [value]="this.usr?.phone?.toString() || ''">
       </mat-form-field>
 
       <button id="btn_update" mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Actualizar información</button>
@@ -98,7 +98,7 @@
     <div class="div_preferences">
       <div class="item" *ngFor="let preferencia of preferencias; let i = index">
         <label class="checkbox-label">
-          <input type="checkbox" [(ngModel)]="preferencia.valor" [checked]="preferencia.valor === 'true' ? true : false">
+          <input type="checkbox" [(ngModel)]="preferencia?.valor" [checked]="preferencia.valor === 'true' ? true : false">
           <span>{{ getTextForIndex(i) }} </span>
         </label>
       </div>

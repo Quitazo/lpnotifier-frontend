@@ -6,7 +6,6 @@ import {LoginService} from "../../../services/login.service";
 import {LicitacionService} from "../../../services/licitacion.service";
 import {Router} from "@angular/router";
 import {user} from "../../../services/user";
-import {HttpClient} from "@angular/common/http";
 
 function MatchValidator(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -213,7 +212,4 @@ export class AdminProfileComponent implements OnInit {
       default: return "";
     }
   }
-
-
-
 }
