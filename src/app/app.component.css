@@ -14,12 +14,6 @@
 
 }
 
-#app_footer {
-  position: fixed;
-  width: 100%;
-  bottom: 0%;
-}
-
 svg.material-icons {
   height: 24px;
   width: auto;
