@@ -17,6 +17,7 @@ export class userService {
     return this.http.post<user>(`${this.apiServerUrl}/usr`,usr);
   }
   public updateUser(usr: user): Observable<user> {
+    console.log(`${this.apiServerUrl}/usr`+usr);
     return this.http.put<user>(`${this.apiServerUrl}/usr`,usr);
   }
   public updatePw(pws:string[]): Observable<user> {

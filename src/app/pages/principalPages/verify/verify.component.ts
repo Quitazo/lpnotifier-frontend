@@ -22,13 +22,13 @@ export class VerifyComponent implements OnInit {
           this.verificationToken = verificationToken;
 
           this.userService.verifyUser(this.verificationToken).subscribe(
-          () => {
-              this.snack.open('El usuario verificado exitosamente. ', 'Aceptar', {
+          (messege) => {
+              this.snack.open('El usuario verificado exitosamente. '+messege, 'Aceptar', {
                 duration: 5000
               });
             },
             (error) => {
-              this.snack.open('#1 '+error.error.message, 'Aceptar', {
+              this.snack.open('Procesndo validación. '+error.error.message, 'Aceptar', {
                 duration: 5000
               });
             }

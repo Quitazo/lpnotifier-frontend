@@ -6,26 +6,27 @@
     <h1 class="title">Información del usuario</h1>
     <hr>
     <form (ngSubmit)="formModUser()" class="form_profile" [formGroup]="userMod">
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
-        <input matInput placeholder="nombre" formControlName="name" [value]="this.usr?.name?.toString() || ''">
-      </mat-form-field>
+      <div class="sub_userMenu">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="nombre" formControlName="name" [value]="this.usr?.name?.toString() || ''">
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Usuario</mat-label>
-        <input matInput placeholder="usuario" formControlName="username" [value]="this.usr?.username?.toString() || ''">
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Usuario</mat-label>
+          <input matInput placeholder="usuario" formControlName="username" [value]="this.usr?.username?.toString() || ''">
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="correo@example.com" [value]="this.usr?.email?.toString() || ''" readonly>
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="correo@example.com" [value]="this.usr?.email?.toString() || ''" readonly>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Telefono</mat-label>
-        <input matInput placeholder="300xxxxxxx" formControlName="phone" [value]="this.usr?.phone?.toString() || ''">
-      </mat-form-field>
-
+        <mat-form-field appearance="outline">
+          <mat-label>Telefono</mat-label>
+          <input matInput placeholder="300xxxxxxx" formControlName="phone" [value]="this.usr?.phone?.toString() || ''">
+        </mat-form-field>
+      </div>
       <button id="btn_update" mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Actualizar información</button>
     </form>
   </div>
@@ -37,58 +38,42 @@
     <h1 class="title">Información del usuario</h1>
     <hr>
     <form (ngSubmit)="updateUser()" class="form_profile" [formGroup]="pwMod">
-      <mat-form-field appearance="outline">
-        <mat-label>Contraseña Antigua</mat-label>
-        <input matInput #inputPw [type]="hide ? 'password' : 'text'" formControlName="oldpw" ngModel required>
-        <a mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </a>
-        <mat-hint align="end">{{inputPw.value.length || 0}}/40</mat-hint>
-        <mat-error *ngIf="pwMod.invalid">{{getErrorOldPwMessage()}}</mat-error>
-      </mat-form-field>
+      <div class="sub_pwMenu">
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña Antigua</mat-label>
+          <input matInput #inputPw [type]="hide ? 'password' : 'text'" formControlName="oldpw" ngModel required>
+          <a mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </a>
+          <mat-hint align="end">{{inputPw.value.length || 0}}/40</mat-hint>
+          <mat-error *ngIf="pwMod.invalid">{{getErrorOldPwMessage()}}</mat-error>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Contraseña nueva</mat-label>
-        <input matInput #inputPw [type]="hide1 ? 'password' : 'text'" formControlName="pw" ngModel required>
-        <a mat-icon-button matSuffix type="button" (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </a>
-        <mat-hint align="end">{{inputPw.value.length || 0}}/40</mat-hint>
-        <mat-error *ngIf="pwMod.invalid">{{getErrorPwMessage()}}</mat-error>
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña nueva</mat-label>
+          <input matInput #inputPw [type]="hide1 ? 'password' : 'text'" formControlName="pw" ngModel required>
+          <a mat-icon-button matSuffix type="button" (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </a>
+          <mat-hint align="end">{{inputPw.value.length || 0}}/40</mat-hint>
+          <mat-error *ngIf="pwMod.invalid">{{getErrorPwMessage()}}</mat-error>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Confirmar la contraseña nueva</mat-label>
-        <input matInput #inputPw2 [type]="hide2 ? 'password' : 'text'" formControlName="pw2" required>
-        <a mat-icon-button matSuffix type="button" (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
-          <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </a>
-        <mat-hint align="end">{{inputPw2.value.length || 0}}/40</mat-hint>
-        <mat-error *ngIf="pwMod.hasError('not_matching', 'pw2')">{{getErrorPwsMessage()}}</mat-error>
-      </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Confirmar la contraseña nueva</mat-label>
+          <input matInput #inputPw2 [type]="hide2 ? 'password' : 'text'" formControlName="pw2" required>
+          <a mat-icon-button matSuffix type="button" (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+            <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </a>
+          <mat-hint align="end">{{inputPw2.value.length || 0}}/40</mat-hint>
+          <mat-error *ngIf="pwMod.hasError('not_matching', 'pw2')">{{getErrorPwsMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
 
       <button id="btn_updatepw" mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Actualizar información</button>
     </form>
   </div>
 
-<!--  <mat-form-field appearance="outline">-->
-<!--    <mat-label>Contraseña</mat-label>-->
-<!--    <input matInput [type]="hide ? 'password' : 'text'" formControlName="pw" ngModel required>-->
-<!--    <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">-->
-<!--      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>-->
-<!--    </button>-->
-<!--  </mat-form-field>-->
-  <!--<div class="user_preferences">
-    <p>Preferencias del Usuario</p>
-    <p>Compraventa: </p>
-    <p>ND: </p>
-    <p>Obras: </p>
-    <p>Otros Servicios: </p>
-    <p>Seguros: </p>
-    <p>Servicios de Aprovicionamiento: </p>
-    <p>Suministros: </p>
-    <p>Concesión: </p>
-  </div>-->
   <div class="container_preferences">
     <div class="image_user">
       <mat-icon class="img_person">list_alt</mat-icon>
@@ -96,11 +81,13 @@
     <h1 class="title">Preferencias del usuario</h1>
     <hr>
     <div class="div_preferences">
-      <div class="item" *ngFor="let preferencia of preferencias; let i = index">
-        <label class="checkbox-label">
-          <input type="checkbox" [(ngModel)]="preferencia.valor" [checked]="preferencia.valor === 'true' ? true : false">
-          <span>{{ getTextForIndex(i) }} </span>
-        </label>
+      <div class="sub_preferences">
+        <div class="item" *ngFor="let preferencia of preferencias; let i = index">
+          <label class="checkbox-label">
+            <input type="checkbox" [(ngModel)]="preferencia.valor" [checked]="preferencia.valor === 'true' ? true : false">
+            <span>{{ getTextForIndex(i) }} </span>
+          </label>
+        </div>
       </div>
       <div>
         <button id="btn_update_Preference" mat-raised-button class="btn btn-primary" (click)="updatePreference()">actualizar Preferencias</button>
