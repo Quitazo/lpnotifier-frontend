@@ -17,12 +17,12 @@ h1,h2,h3,h4,h5,h6 {
 
 .mat-elevation-z8 {
   display: grid;
-  width: 100vh;
-  max-height: 100vh;
+  width: 100%;
+  max-height: 100%;
 }
 
 .mat-form-field {
-  font-size: 1vh;
+  font-size: 88%;
   width: 100%;
 }
 
@@ -40,18 +40,16 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .row{
-  margin: 0 2vh;
-  padding: 0 2vhx;
+  margin: 0 1vh;
+  padding: 0 1vh;
 }
-.btn btn-showAll, btn btn-showPreference{
-  margin-right: 1vh;
-}
+
 .mat-header-cell {
   text-align: center;
 }
 
 .table_column {
-  font-size: 1vh;
+  font-size: 88%;
   text-align: justify;
   padding-inline: 1vh;
 }
