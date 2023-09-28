@@ -55,7 +55,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .table_column:nth-child(4) {
-  font-size: 1vh;
+  font-size: 77%;
   text-align: justify;
   padding-inline: 1vh;
 }
