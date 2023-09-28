@@ -1,3 +1,140 @@
-.perfil_container {
+.container_profile {
   display: flex;
+  flex-direction: row;
+  height: 100vh;
+  justify-content: space-evenly;
 }
+
+.sub_userMenu{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 10px 10px 0 0;
+  height: fit-content;
+  padding: 20px;
+  align-self: center;
+  background-color: white;
+}
+
+.container_preferences {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: white;
+  height: fit-content;
+}
+
+.div_preferences{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 10px;
+  height: fit-content;
+  padding: 20px;
+  align-self: center;
+  background-color: #c0c0c0;
+}
+.sub_preferences {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 10px 10px 0 0;
+  height: fit-content;
+  padding: 20px;
+  align-self: center;
+  background-color: white;
+}
+
+.user_panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sub_pwMenu{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 10px 10px 0 0;
+  height: fit-content;
+  padding: 20px;
+  align-self: center;
+  background-color: white;
+}
+
+.user_preferences {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_profile {
+  display: flex;
+  flex-direction: column;
+  background-color: #c0c0c0;
+  border: #e3e3e3 10px;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+mat-form-field {
+  background-color: #FFFFFF;
+  padding: 2vh;
+}
+mat-form-field:nth-child(1) {
+  border-radius: 10px 10px 0 0;
+}
+
+#btn_update, #btn_update_Preference, #btn_updatepw {
+  margin: 20px;
+  color: cadetblue;
+  background-color: white;
+  border-radius: 12px;
+}
+
+.image_user {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  width: 100px; /* ajusta el ancho según tus necesidades */
+  height: 100px; /* ajusta la altura según tus necesidades */
+  background-color: #ccc; /* opcional: agrega un color de fondo para verificar el tamaño */
+  margin: 5%;
+  border-radius: 100%;
+  border: #FFFFFF 2px;
+
+}
+.img_person {
+  width: fit-content;
+  height: fit-content;
+  font-size: 48px; /* ajusta el tamaño de la fuente según tus necesidades */
+}
+
+#user_data {
+
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+
+
+input[type="checkbox"] {
+  margin-left: auto;
+}
+
