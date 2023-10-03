@@ -44,6 +44,7 @@ export class AdminProfileComponent implements OnInit {
   public pwMod: FormGroup;
   public preferencias: Preferencia[] = [];
   public preferenciaValores: boolean[] = [];
+
   public usr: user = {
     name: '',
     email: '',
@@ -64,8 +65,8 @@ export class AdminProfileComponent implements OnInit {
     });
     this.pwMod = this.fb.group({
       oldpw: ['', Validators.required],
-      pw: ['', Validators.required],
-      pw2: ['', Validators.required],
+      pw: ['', Validators.required, Validators.minLength(8), Validators.maxLength(40)],
+      pw2: ['', Validators.required, Validators.minLength(8), Validators.maxLength(40)],
     }, {
       validators: [MatchValidator('pw', 'pw2')]
     });
@@ -100,59 +101,18 @@ export class AdminProfileComponent implements OnInit {
     return this.pwMod.get('pw2')?.hasError('not_matching') ? 'Las contraseñas no concuerdan!' : '';
   }
 
-  updateUser() {
-    if (this.userMod.valid) {
-      const formValue = this.userMod.value;
-
-      // Actualizar las propiedades del objeto usr con los valores del formulario
-      this.usr.name = formValue.name;
-      this.usr.username = formValue.username;
-      this.usr.phone = formValue.phone;
-
-      // Ahora puedes realizar cualquier acción que necesites con los valores actualizados
-      // Por ejemplo, enviar los valores actualizados al servicio de usuario
-      this.userService.updateUser(this.usr).subscribe(response => {
-        // Hacer algo con la respuesta si es necesario
-      });
-    }
-  }
-
-  updatePw() {
-    this.progress_bar3 = true;
-
-    // if (this.userMod.valid) {
-    //   const formValue = this.pwMod.value;
-    //   const String[] = [formValue.oldpw, formValue.pw];
-    //   this.userService.updatePw(formValue.oldpw, formValue.pw).subscribe((data: any) => {
-    //       this.progress_bar3 = false;
-    //       this.snack.open('Datos guardados con exito.', 'Aceptar', {
-    //         duration: 3000
-    //       });
-    //     }, (error) => {
-    //       this.progress_bar3 = false;
-    //       this.snack.open('Detalles inválidos , vuelva a intentar !!\n' + error, 'Aceptar', {
-    //         duration: 3000
-    //       });
-    //     }
-    //   )
-    // } else {
-    //   this.progress_bar3 = false;
-    //   this.snack.open('Formulario invalido', 'Aceptar', {
-    //     duration: 3000
-    //   });
-    // }
-  }
-
   formModUser() {
     this.progress_bar = true;
 
     if (this.userMod.valid) {
       const formValue = this.userMod.value;
-
+      console.log("FORMMOD "+this.userMod.value);
       // Actualizar las propiedades del objeto usr con los valores del formulario
+
       this.usr.name = formValue.name;
       this.usr.username = formValue.username;
       this.usr.phone = formValue.phone;
+      console.log("FORMVALUE -> "+this.usr+" "+this.usr.name+" "+this.usr.username+" "+this.usr.phone);
 
       this.userService.updateUser(this.usr).subscribe(() => {
           this.progress_bar = false;
@@ -173,6 +133,48 @@ export class AdminProfileComponent implements OnInit {
       });
     }
   }
+
+  updateUser() {
+    if (this.pwMod.valid) {
+      const formValue = this.pwMod.value;
+
+      // Actualizar las propiedades del objeto usr con los valores del formulario
+      this.usr.name = formValue.name;
+      this.usr.username = formValue.username;
+      this.usr.phone = formValue.phone;
+
+      // Ahora puedes realizar cualquier acción que necesites con los valores actualizados
+      // Por ejemplo, enviar los valores actualizados al servicio de usuario
+      this.userService.updateUser(this.usr).subscribe(response => {
+        // Hacer algo con la respuesta si es necesario
+      });
+    }
+  }
+
+  // updatePw() {
+  //   this.progress_bar3 = true;
+  //   if (this.userMod.valid) {
+  //     const formValue = this.pwMod.value;
+  //     const String[] = [formValue.oldpw, formValue.pw];
+  //     this.userService.updatePw(formValue.oldpw, formValue.pw).subscribe((data: any) => {
+  //         this.progress_bar3 = false;
+  //         this.snack.open('Datos guardados con exito.', 'Aceptar', {
+  //           duration: 3000
+  //         });
+  //       }, (error) => {
+  //         this.progress_bar3 = false;
+  //         this.snack.open('Detalles inválidos , vuelva a intentar !!\n' + error, 'Aceptar', {
+  //           duration: 3000
+  //         });
+  //       }
+  //     )
+  //   } else {
+  //     this.progress_bar3 = false;
+  //     this.snack.open('Formulario invalido', 'Aceptar', {
+  //       duration: 3000
+  //     });
+  //   }
+  // }
 
   updatePreference(): void {
     // Convertir los valores de preferencia a un array de booleanos
