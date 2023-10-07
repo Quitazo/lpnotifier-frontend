@@ -4,8 +4,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {LoginService} from "../../../services/login.service";
 import {LicitacionService} from "../../../services/licitacion.service";
-import {Router} from "@angular/router";
 import {user} from "../../../services/user";
+
 
 function MatchValidator(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -54,18 +54,18 @@ export class AdminProfileComponent implements OnInit {
     phone: 0
   };
 
-  constructor(private licitacionService:LicitacionService, private userService:userService, private fb: FormBuilder, private snack: MatSnackBar, private loginService:LoginService, private router:Router) {
+  constructor(private licitacionService:LicitacionService, private userService:userService, private fb: FormBuilder, private snack: MatSnackBar, private loginService:LoginService) {
     this.loginService.getUserData().subscribe((usrTemp: user) => {
       this.usr = usrTemp;
     });
     this.userMod = this.fb.group({
       name : new FormControl('', [Validators.minLength(6), Validators.maxLength(60)]),
-      username : new FormControl('', [Validators.minLength(6), Validators.maxLength(60)]),
+      username : new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
       phone: new FormControl('', [Validators.minLength(6), Validators.maxLength(20)]),
     });
     this.pwMod = this.fb.group({
       oldpw: ['', Validators.required],
-      pw: ['', Validators.required, Validators.minLength(8), Validators.maxLength(40)],
+      pw1: ['', Validators.required, Validators.minLength(8), Validators.maxLength(40)],
       pw2: ['', Validators.required, Validators.minLength(8), Validators.maxLength(40)],
     }, {
       validators: [MatchValidator('pw', 'pw2')]
@@ -89,10 +89,10 @@ export class AdminProfileComponent implements OnInit {
   }
 
   getErrorPwMessage() {
-    if (this.pwMod.get('pw')?.hasError('required')) {
+    if (this.pwMod.get('pw1')?.hasError('required')) {
       return 'Es necesario ingresar una Contraseña.';
     }
-    return this.pwMod.get('pw')?.hasError('password') ? 'La contraseña ingresada no es valida.' : '';
+    return this.pwMod.get('pw1')?.hasError('password') ? 'La contraseña ingresada no es valida.' : '';
   }
   getErrorPwsMessage() {
     if (this.pwMod.get('pw2')?.hasError('required')) {
@@ -137,7 +137,7 @@ export class AdminProfileComponent implements OnInit {
 
     if (this.userMod.valid && token!=null) {
       const formValue = this.pwMod.value;
-      const pws:string[] = [formValue.oldpw, formValue.pw];
+      const pws:string[] = [formValue.oldpw, formValue.pw1];
 
       this.userService.updatePw(token, pws).subscribe(() => {
           this.progress_bar3 = false;
