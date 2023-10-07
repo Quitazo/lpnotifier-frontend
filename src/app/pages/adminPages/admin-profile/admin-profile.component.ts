@@ -82,10 +82,10 @@ export class AdminProfileComponent implements OnInit {
     }
   }
   getErrorOldPwMessage() {
-    if (this.pwMod.get('old')?.hasError('required')) {
+    if (this.pwMod.get('oldpw')?.hasError('required')) {
       return 'Es necesario ingresar una Contraseña.';
     }
-    return this.pwMod.get('old')?.hasError('oldPassword') ? 'La contraseña ingresada no es valida.' : '';
+    return this.pwMod.get('oldpw')?.hasError('oldPassword') ? 'La contraseña ingresada no es valida.' : '';
   }
 
   getErrorPwMessage() {
@@ -134,6 +134,7 @@ export class AdminProfileComponent implements OnInit {
   updateUser() {
     this.progress_bar3 = true;
     const token = this.loginService.getToken();
+    console.log("PWS VALID "+this.pwMod.valid+" "+this.pwMod.value.oldpw.value+" "+this.pwMod.value.pw1.value)
 
     if (this.pwMod.valid && token!=null) {
       const formValue = this.pwMod.value;
