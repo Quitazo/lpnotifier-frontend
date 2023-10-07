@@ -135,7 +135,7 @@ export class AdminProfileComponent implements OnInit {
     this.progress_bar3 = true;
     const token = this.loginService.getToken();
 
-    if (this.userMod.valid && token!=null) {
+    if (this.pwMod.valid && token!=null) {
       const formValue = this.pwMod.value;
       const pws:string[] = [formValue.oldpw, formValue.pw1];
 
