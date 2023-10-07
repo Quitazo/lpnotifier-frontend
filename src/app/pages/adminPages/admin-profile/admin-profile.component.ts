@@ -103,8 +103,9 @@ export class AdminProfileComponent implements OnInit {
 
   formModUser() {
     this.progress_bar = true;
+    const token = this.loginService.getToken();
 
-    if (this.userMod.valid) {
+    if (this.userMod.valid && token!=null) {
       const formValue = this.userMod.value;
       console.log("FORMMOD "+this.userMod.value);
       // Actualizar las propiedades del objeto usr con los valores del formulario
@@ -116,7 +117,7 @@ export class AdminProfileComponent implements OnInit {
 
       this.loginService.setModUser(this.usr);
 
-      this.userService.updateUser(this.usr).subscribe(() => {
+      this.userService.updateUser(token, this.usr).subscribe(() => {
           this.progress_bar = false;
           this.snack.open('Datos guardados con exito.', 'Aceptar', {
             duration: 3000
@@ -147,9 +148,9 @@ export class AdminProfileComponent implements OnInit {
 
       // Ahora puedes realizar cualquier acción que necesites con los valores actualizados
       // Por ejemplo, enviar los valores actualizados al servicio de usuario
-      this.userService.updateUser(this.usr).subscribe(response => {
-        // Hacer algo con la respuesta si es necesario
-      });
+      // this.userService.updateUser(this.usr).subscribe(response => {
+      //   // Hacer algo con la respuesta si es necesario
+      // });
     }
   }
 

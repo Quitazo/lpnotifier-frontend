@@ -102,27 +102,11 @@ export class UserProfileComponent implements OnInit {
     return this.pwMod.get('pw2')?.hasError('not_matching') ? 'Las contraseñas no concuerdan!' : '';
   }
 
-  updateUser() {
-    if (this.userMod.valid) {
-      const formValue = this.userMod.value;
-
-      // Actualizar las propiedades del objeto usr con los valores del formulario
-      this.usr.name = formValue.name;
-      this.usr.username = formValue.username;
-      this.usr.phone = formValue.phone;
-
-      // Ahora puedes realizar cualquier acción que necesites con los valores actualizados
-      // Por ejemplo, enviar los valores actualizados al servicio de usuario
-      this.userService.updateUser(this.usr).subscribe(response => {
-        // Hacer algo con la respuesta si es necesario
-      });
-    }
-  }
-
   formModUser() {
     this.progress_bar = true;
+    const token = this.loginService.getToken();
+    if (this.userMod.valid && token!=null) {
 
-    if (this.userMod.valid) {
       const formValue = this.userMod.value;
 
       // Actualizar las propiedades del objeto usr con los valores del formulario
@@ -132,7 +116,7 @@ export class UserProfileComponent implements OnInit {
 
       this.loginService.setModUser(this.usr);
 
-      this.userService.updateUser(this.usr).subscribe(() => {
+      this.userService.updateUser(token, this.usr).subscribe(() => {
           this.progress_bar = false;
           this.snack.open('Datos guardados con exito.', 'Aceptar', {
             duration: 3000
@@ -149,6 +133,25 @@ export class UserProfileComponent implements OnInit {
       this.snack.open('Formulario invalido', 'Aceptar', {
         duration: 3000
       });
+    }
+  }
+
+
+  updateUser() {
+    if (this.userMod.valid) {
+
+      const formValue = this.userMod.value;
+
+      // Actualizar las propiedades del objeto usr con los valores del formulario
+      this.usr.name = formValue.name;
+      this.usr.username = formValue.username;
+      this.usr.phone = formValue.phone;
+
+      // Ahora puedes realizar cualquier acción que necesites con los valores actualizados
+      // Por ejemplo, enviar los valores actualizados al servicio de usuario
+      // this.userService.updateUser(this.usr).subscribe(response => {
+      //   // Hacer algo con la respuesta si es necesario
+      // });
     }
   }
 
