@@ -41,7 +41,7 @@
       <div class="sub_pwMenu">
         <mat-form-field appearance="outline">
           <mat-label>Contraseña Antigua</mat-label>
-          <input matInput #inputOldPw [type]="hide ? 'password' : 'text'" formControlName="oldpw" required>
+          <input matInput name="inputOldPw" #inputOldPw [type]="hide ? 'password' : 'text'" formControlName="oldpw" ngModel required>
           <a mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </a>
@@ -51,7 +51,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Contraseña nueva</mat-label>
-          <input matInput #inputPw1 [type]="hide1 ? 'password' : 'text'" formControlName="pw1" required>
+          <input matInput name="inputPw1" #inputPw1 [type]="hide1 ? 'password' : 'text'" formControlName="pw1" ngModel required>
           <a mat-icon-button matSuffix type="button" (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
             <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
           </a>
@@ -61,7 +61,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Confirmar la contraseña nueva</mat-label>
-          <input matInput #inputPw2 [type]="hide2 ? 'password' : 'text'" formControlName="pw2" required>
+          <input matInput name="inputPw2" #inputPw2 [type]="hide2 ? 'password' : 'text'" formControlName="pw2" ngModel required>
           <a mat-icon-button matSuffix type="button" (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
             <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
           </a>
