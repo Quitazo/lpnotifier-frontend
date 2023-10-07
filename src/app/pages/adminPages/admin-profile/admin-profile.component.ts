@@ -42,6 +42,7 @@ export class AdminProfileComponent implements OnInit {
 
   public userMod: FormGroup;
   public pwMod: FormGroup;
+  public pws: string[] = [];
   public preferencias: Preferencia[] = [];
   public preferenciaValores: boolean[] = [];
 
@@ -107,13 +108,10 @@ export class AdminProfileComponent implements OnInit {
 
     if (this.userMod.valid && token!=null) {
       const formValue = this.userMod.value;
-      console.log("FORMMOD "+this.userMod.value);
-      // Actualizar las propiedades del objeto usr con los valores del formulario
 
       this.usr.name = formValue.name;
       this.usr.username = formValue.username;
       this.usr.phone = formValue.phone;
-      console.log("FORMVALUE -> "+this.usr+" "+this.usr.name+" "+this.usr.username+" "+this.usr.phone);
 
       this.loginService.setModUser(this.usr);
 
@@ -138,19 +136,19 @@ export class AdminProfileComponent implements OnInit {
   }
 
   updateUser() {
-    if (this.pwMod.valid) {
-      const formValue = this.pwMod.value;
+    const token = this.loginService.getToken();
 
-      // Actualizar las propiedades del objeto usr con los valores del formulario
-      this.usr.name = formValue.name;
-      this.usr.username = formValue.username;
-      this.usr.phone = formValue.phone;
+    if (this.pwMod.valid && token!=null) {
+      const formPws = this.pwMod.value;
+      console.log("FORMPW "+this.pwMod.value);
 
-      // Ahora puedes realizar cualquier acción que necesites con los valores actualizados
-      // Por ejemplo, enviar los valores actualizados al servicio de usuario
-      // this.userService.updateUser(this.usr).subscribe(response => {
-      //   // Hacer algo con la respuesta si es necesario
-      // });
+      this.pws.splice(0, this.pws.length);
+      this.pws.push(formPws.pw.value);
+      this.pws.push(formPws.pw2.value);
+
+      this.userService.updatePw(token, this.pws).subscribe(response => {
+        // Hacer algo con la respuesta si es necesario
+      });
     }
   }
 

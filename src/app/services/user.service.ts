@@ -17,11 +17,10 @@ export class userService {
     return this.http.post<user>(`${this.apiServerUrl}/usr`,usr);
   }
   public updateUser(token: string, usr: user): Observable<user> {
-    const url = `${this.apiServerUrl}/usr?token=${token}`;
-    return this.http.put<user>(url, usr);
+    return this.http.put<user>(`${this.apiServerUrl}/usr?token=${token}`, usr);
   }
-  public updatePw(pws:string[]): Observable<user> {
-    return this.http.put<user>(`${this.apiServerUrl}/usr/updatePw`,pws);
+  public updatePw(token: string, pws:string[]): Observable<user> {
+    return this.http.put<user>(`${this.apiServerUrl}/usr/updatePw?token=${token}`,pws);
   }
   public deleteUser(userId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/usr/${userId}`);
