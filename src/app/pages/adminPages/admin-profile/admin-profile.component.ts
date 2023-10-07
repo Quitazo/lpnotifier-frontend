@@ -42,7 +42,6 @@ export class AdminProfileComponent implements OnInit {
 
   public userMod: FormGroup;
   public pwMod: FormGroup;
-  public pws: string[] = [];
   public preferencias: Preferencia[] = [];
   public preferenciaValores: boolean[] = [];
 
@@ -108,12 +107,9 @@ export class AdminProfileComponent implements OnInit {
 
     if (this.userMod.valid && token!=null) {
       const formValue = this.userMod.value;
-
       this.usr.name = formValue.name;
       this.usr.username = formValue.username;
       this.usr.phone = formValue.phone;
-
-      this.loginService.setModUser(this.usr);
 
       this.userService.updateUser(token, this.usr).subscribe(() => {
           this.progress_bar = false;
@@ -136,46 +132,33 @@ export class AdminProfileComponent implements OnInit {
   }
 
   updateUser() {
+    this.progress_bar3 = true;
     const token = this.loginService.getToken();
 
-    if (this.pwMod.valid && token!=null) {
-      const formPws = this.pwMod.value;
-      console.log("FORMPW "+this.pwMod.value);
+    if (this.userMod.valid && token!=null) {
+      const formValue = this.pwMod.value;
+      const pws:string[] = [formValue.oldpw, formValue.pw];
 
-      this.pws.splice(0, this.pws.length);
-      this.pws.push(formPws.pw.value);
-      this.pws.push(formPws.pw2.value);
-
-      this.userService.updatePw(token, this.pws).subscribe(response => {
-        // Hacer algo con la respuesta si es necesario
+      this.userService.updatePw(token, pws).subscribe(() => {
+          this.progress_bar3 = false;
+          this.snack.open('Datos guardados con exito.', 'Aceptar', {
+            duration: 3000
+          });
+        }, (error) => {
+          this.progress_bar3 = false;
+          this.snack.open('Detalles inválidos , vuelva a intentar !!\n' + error.message.message, 'Aceptar', {
+            duration: 3000
+          });
+        }
+      )
+    } else {
+      this.progress_bar3 = false;
+      this.snack.open('Formulario invalido', 'Aceptar', {
+        duration: 3000
       });
     }
   }
 
-  // updatePw() {
-  //   this.progress_bar3 = true;
-  //   if (this.userMod.valid) {
-  //     const formValue = this.pwMod.value;
-  //     const String[] = [formValue.oldpw, formValue.pw];
-  //     this.userService.updatePw(formValue.oldpw, formValue.pw).subscribe((data: any) => {
-  //         this.progress_bar3 = false;
-  //         this.snack.open('Datos guardados con exito.', 'Aceptar', {
-  //           duration: 3000
-  //         });
-  //       }, (error) => {
-  //         this.progress_bar3 = false;
-  //         this.snack.open('Detalles inválidos , vuelva a intentar !!\n' + error, 'Aceptar', {
-  //           duration: 3000
-  //         });
-  //       }
-  //     )
-  //   } else {
-  //     this.progress_bar3 = false;
-  //     this.snack.open('Formulario invalido', 'Aceptar', {
-  //       duration: 3000
-  //     });
-  //   }
-  // }
 
   updatePreference(): void {
     // Convertir los valores de preferencia a un array de booleanos
