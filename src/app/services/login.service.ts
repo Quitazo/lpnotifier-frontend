@@ -19,6 +19,19 @@ export class LoginService {
     return this.http.post(`${this.apiServerUrl}/auth/generate-token`, loginData);
   }
 
+  public getModUser() : any {
+    const usrMod = localStorage.getItem('modUser');
+    if(usrMod){
+      return JSON.parse(usrMod);
+    }else{
+      return null;
+    }
+  }
+
+  public setModUser(usr:user) {
+    localStorage.setItem('modUser',JSON.stringify(usr));
+  }
+
   public loginUser(token:any) {
     localStorage.setItem('token',token);
     return true;
@@ -89,5 +102,4 @@ export class LoginService {
   public getPreferences(correo:String) :Observable<String[]>{
     return this.http.get<String[]>(`${this.apiServerUrl}/usr/preferences/${correo}`);
   }
-
 }

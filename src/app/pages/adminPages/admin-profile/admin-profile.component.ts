@@ -114,6 +114,8 @@ export class AdminProfileComponent implements OnInit {
       this.usr.phone = formValue.phone;
       console.log("FORMVALUE -> "+this.usr+" "+this.usr.name+" "+this.usr.username+" "+this.usr.phone);
 
+      this.loginService.setModUser(this.usr);
+
       this.userService.updateUser(this.usr).subscribe(() => {
           this.progress_bar = false;
           this.snack.open('Datos guardados con exito.', 'Aceptar', {

@@ -130,6 +130,8 @@ export class UserProfileComponent implements OnInit {
       this.usr.username = formValue.username;
       this.usr.phone = formValue.phone;
 
+      this.loginService.setModUser(this.usr);
+
       this.userService.updateUser(this.usr).subscribe(() => {
           this.progress_bar = false;
           this.snack.open('Datos guardados con exito.', 'Aceptar', {

@@ -31,6 +31,8 @@ export class ToolbarModule implements OnInit {
     if (token != null) {
       this.loginService.getUserRole(token).subscribe((role: string) => {
         this.userRole = role;
+      },error => {
+        this.loginService.logout();
       });
     }
   }
