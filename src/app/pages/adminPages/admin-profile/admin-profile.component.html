@@ -41,28 +41,31 @@
       <div class="sub_pwMenu">
         <mat-form-field appearance="outline">
           <mat-label>Contraseña Antigua</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" formControlName="oldpw" ngModel required>
+          <input matInput #inputOldPw [type]="hide ? 'password' : 'text'" formControlName="oldpw" ngModel required>
           <a mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </a>
+          <mat-hint align="end">{{inputOldPw.value.length || 0}}/40</mat-hint>
           <mat-error *ngIf="pwMod.invalid">{{getErrorOldPwMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Contraseña nueva</mat-label>
-          <input matInput [type]="hide1 ? 'password' : 'text'" formControlName="pw" ngModel required>
+          <input matInput #inputPw1 [type]="hide1 ? 'password' : 'text'" formControlName="pw" ngModel required>
           <a mat-icon-button matSuffix type="button" (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
             <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
           </a>
+          <mat-hint align="end">{{inputPw1.value.length || 0}}/40</mat-hint>
           <mat-error *ngIf="pwMod.invalid">{{getErrorPwMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Confirmar la contraseña nueva</mat-label>
-          <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="pw2" ngModel required>
+          <input matInput #inputPw2 [type]="hide2 ? 'password' : 'text'" formControlName="pw2" ngModel required>
           <a mat-icon-button matSuffix type="button" (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
             <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
           </a>
+          <mat-hint align="end">{{inputPw2.value.length || 0}}/40</mat-hint>
           <mat-error *ngIf="pwMod.hasError('not_matching', 'pw2')">{{getErrorPwsMessage()}}</mat-error>
         </mat-form-field>
       </div>

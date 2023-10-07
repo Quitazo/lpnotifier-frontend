@@ -27,7 +27,6 @@ function MatchValidator(controlName: string, matchingControlName: string) {
 interface Preferencia{
   valor: String;
 }
-
 @Component({
   selector: 'app-root-admin-profile',
   templateUrl: './admin-profile.component.html',
@@ -66,8 +65,8 @@ export class AdminProfileComponent implements OnInit {
     });
     this.pwMod = this.fb.group({
       oldpw: ['', Validators.required],
-      pw: ['', Validators.required, Validators.minLength(6), Validators.maxLength(40)],
-      pw2: ['', Validators.required, Validators.minLength(6), Validators.maxLength(40)],
+      pw: ['', Validators.required, Validators.minLength(8), Validators.maxLength(40)],
+      pw2: ['', Validators.required, Validators.minLength(8), Validators.maxLength(40)],
     }, {
       validators: [MatchValidator('pw', 'pw2')]
     });
