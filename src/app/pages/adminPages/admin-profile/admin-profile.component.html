@@ -27,7 +27,7 @@
           <input matInput placeholder="300xxxxxxx" formControlName="phone" [value]="this.usr?.phone?.toString() || ''">
         </mat-form-field>
       </div>
-      <button id="btn_update" mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Actualizar información</button>
+      <button id="btn_update" mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Actualizar Información</button>
     </form>
   </div>
 
@@ -70,7 +70,7 @@
         </mat-form-field>
       </div>
 
-      <button id="btn_updatepw" mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Actualizar información</button>
+      <button id="btn_updatepw" mat-raised-button class="btn btn-primary" [disabled]="pwMod.invalid">Actualizar Contraseña</button>
     </form>
   </div>
 
@@ -90,7 +90,7 @@
         </div>
       </div>
       <div>
-        <button id="btn_update_Preference" mat-raised-button class="btn btn-primary" (click)="updatePreference()">actualizar Preferencias</button>
+        <button id="btn_update_Preference" mat-raised-button class="btn btn-primary" (click)="updatePreference()">Actualizar Preferencias</button>
       </div>
       <mat-label id="msg_bar" *ngIf="progress_bar2==true">Cargando...</mat-label>
       <mat-progress-bar id="load_bar" *ngIf="progress_bar2==true" mode="buffer"></mat-progress-bar>
