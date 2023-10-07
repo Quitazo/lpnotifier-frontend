@@ -1,7 +1,6 @@
 .container_profile {
   display: flex;
   flex-direction: row;
-  height: 100vh;
   justify-content: space-evenly;
 }
 

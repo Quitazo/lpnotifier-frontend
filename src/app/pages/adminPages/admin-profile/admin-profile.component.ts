@@ -68,7 +68,7 @@ export class AdminProfileComponent implements OnInit {
       pw1: ['', Validators.required, Validators.minLength(8), Validators.maxLength(40)],
       pw2: ['', Validators.required, Validators.minLength(8), Validators.maxLength(40)],
     }, {
-      validators: [MatchValidator('pw', 'pw2')]
+      validators: [MatchValidator('pw1', 'pw2')]
     });
   }
 
