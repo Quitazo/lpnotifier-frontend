@@ -51,11 +51,11 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Contraseña nueva</mat-label>
-          <input matInput #inputPw [type]="hide1 ? 'password' : 'text'" formControlName="pw" ngModel required>
-          <a mat-icon-button matSuffix type="button" (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <input matInput #inputPw1 [type]="hide1 ? 'password' : 'text'" formControlName="pw" ngModel required>
+          <a mat-icon-button matSuffix type="button" (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
             <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
           </a>
-          <mat-hint align="end">{{inputPw.value.length || 0}}/40</mat-hint>
+          <mat-hint align="end">{{inputPw1.value.length || 0}}/40</mat-hint>
           <mat-error *ngIf="pwMod.invalid">{{getErrorPwMessage()}}</mat-error>
         </mat-form-field>
 
