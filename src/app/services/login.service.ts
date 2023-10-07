@@ -1,7 +1,7 @@
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from '@angular/core';
-import { Observable, of, Subject} from "rxjs";
+import {Observable, of, Subject, throwError} from "rxjs";
 import { catchError, filter, map } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import {user} from "./user";
@@ -65,6 +65,31 @@ export class LoginService {
     }
   }
 
+  public getUserRole(token: string): Observable<string> {
+    const url = `${this.apiServerUrl}/auth/rl-user?token=${token}`;
+    return this.http.get<string[]>(url).pipe(
+      map((roles: string[]) => {
+        return roles[0];
+      }),
+      catchError((error) => {
+        this.logout();
+        return throwError(error);
+      })
+    );
+  }
+
+  public getCurrentUser(): Observable<any> {
+    return this.http.get(`${this.apiServerUrl}/auth/actual-user`);
+  }
+
+  public getUserData(): Observable<any> {
+    return this.http.get(`${this.apiServerUrl}/usr/${this.getUser().username}`);
+  }
+
+  public getPreferences(correo:String) :Observable<String[]>{
+    return this.http.get<String[]>(`${this.apiServerUrl}/usr/preferences/${correo}`);
+  }
+
   public getToken() {
     try {
       return localStorage.getItem('token');
@@ -80,26 +105,5 @@ export class LoginService {
       return user.authorities[0].authority;
     }
     return '';
-  }
-
-  public getUserRole(token: string): Observable<string> {
-    const url = `${this.apiServerUrl}/auth/rl-user?token=${token}`;
-    return this.http.get<string[]>(url).pipe(
-      map((roles: string[]) => {
-        return roles[0];
-      })
-    );
-  }
-
-  public getCurrentUser(): Observable<any> {
-    return this.http.get(`${this.apiServerUrl}/auth/actual-user`);
-  }
-
-  public getUserData(): Observable<any> {
-    return this.http.get(`${this.apiServerUrl}/usr/${this.getUser().username}`);
-  }
-
-  public getPreferences(correo:String) :Observable<String[]>{
-    return this.http.get<String[]>(`${this.apiServerUrl}/usr/preferences/${correo}`);
   }
 }
