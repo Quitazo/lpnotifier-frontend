@@ -1,10 +1,10 @@
 <div class="content" role="main">
   <div class="container">
-    <h1 class="container_title">Crear un usuario</h1>
+    <h1 class="container_title">Registrar nuevo Usuario</h1>
     <div class="container_panels">
       <div class="info_container">
         <img id="fondo_register" src="../../../../assets/fondo_register.png" alt="" />
-        <p id="info_register">Regístrese en la aplicación para aprovechar los beneficios de nuestros servicios y la aplicación.</p>
+        <p id="info_register">¡Bienvenido a nuestra aplicación! Regístrate ahora para desbloquear una amplia gama de beneficios exclusivos que te ofrecemos. Estamos emocionados de tenerte a bordo y esperamos que disfrutes de todo lo que nuestra aplicación tiene para ofrecer. ¡Comienza tu viaje con nosotros ahora!</p>
       </div>
       <div class="form_container">
         <form (ngSubmit)="formSubmit()" class="form_register" [formGroup]="userForm">
@@ -58,7 +58,7 @@
         </form>
 
         <button mat-raised-button type="submit" class="btn btn-snd" [routerLink]="'/login'" >Tengo un usuario</button>
-        <button mat-raised-button type="submit" class="btn btn-trd">Olvide la contraseña?</button>
+        <!--        <button mat-raised-button type="submit" class="btn btn-trd">Olvide la contraseña?</button>-->
       </div>
     </div>
     <mat-label id="msg_bar" *ngIf="progress_bar==true" >Cargando...</mat-label>

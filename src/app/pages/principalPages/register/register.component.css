@@ -82,12 +82,15 @@
 }
 
 #fondo_register {
-  width: 100%;
-  margin: 20px 0;
+  width: 80%;
+  max-width: fit-content;
+  align-self: center;
+  margin: 1vh 0;
   opacity: 0.9;
 }
 #info_register {
-  margin-top: 12px;
+  font-size: 1.3vh;
+  margin-top: 0.5vh;
   text-align: justify;
   -webkit-text-stroke-width: thin;
 }

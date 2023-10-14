@@ -1,10 +1,9 @@
 footer {
   padding-inline: 1.5%;
-  height: 25vh;
   background-color: #4a4a4a;
   color: #eeeeee;
   font-family: system-ui;
-  min-width: 500px;
+  min-width: fit-content;
   min-height: 220px;
 }
 
@@ -42,6 +41,7 @@ h4{
   margin-right: 4px;
 }
 #footer_frase{
+  margin: 1vh;
   color: darkgray;
   font-size: 90%;
 }
@@ -52,14 +52,14 @@ h4{
   margin-bottom: 0;
 }
 #footer_contact_logo{
-  margin-right: 6px;
+  margin-right: 2vh;
   vertical-align: middle;
 }
 #footer_follow_title{
   align-self: start;
 }
 #footer_follow_text{
-  padding-bottom: 3%;
+  padding-bottom: 1vh;
   color: darkgray;
   font-size: 90%;
 }
