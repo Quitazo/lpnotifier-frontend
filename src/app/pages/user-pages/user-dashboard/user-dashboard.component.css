@@ -31,7 +31,7 @@ h1,h2,h3,h4,h5,h6 {
   align-items: center;
   display: flex;
   flex-direction: row;
-  width: 80vh;
+  width: 38vh;
 }
 
 .table-search {
@@ -50,8 +50,14 @@ h1,h2,h3,h4,h5,h6 {
 
 .table_column {
   font-size: 88%;
-  text-align: justify;
+  text-align: center;
   padding-inline: 2px;
+}
+
+.table_column:nth-child(4) {
+  font-size: 77%;
+  text-align: justify;
+  padding-inline: 1vh;
 }
 
 .btn-showAll, .btn-showPreference{
