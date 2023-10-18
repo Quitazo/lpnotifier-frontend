@@ -8,10 +8,10 @@ import {user} from "../../../services/user";
 import {LicitacionService} from "../../../services/licitacion.service";
 
 
-function MatchValidator(pw: string, pw2: string) {
+function MatchValidator(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
-    const control = formGroup.get(pw);
-    const matchingControl = formGroup.get(pw2);
+    const control = formGroup.get(controlName);
+    const matchingControl = formGroup.get(matchingControlName);
 
     if (matchingControl?.errors && !matchingControl.errors['No concuerdan']) {
       return;
@@ -139,13 +139,12 @@ export class UserProfileComponent implements OnInit {
   updateUser() {
     this.progress_bar3 = true;
     const token = this.loginService.getToken();
-    console.log("PWS VALID "+this.pwMod.valid)
+    const pwModValue = this.pwMod.value;
+    console.log("PWS VALID " + this.pwMod.valid, pwModValue.oldpw, pwModValue.pw1);
 
     if (this.pwMod.valid && token!=null) {
       const formValue = this.pwMod.value;
-      console.log("PWS VALUES "+formValue.oldpw+" "+formValue.pw1)
       const pws:string[] = [formValue.oldpw, formValue.pw1];
-
       this.userService.updatePw(token, pws).subscribe(() => {
           this.progress_bar3 = false;
           this.snack.open('Datos guardados con exito.', 'Aceptar', {
