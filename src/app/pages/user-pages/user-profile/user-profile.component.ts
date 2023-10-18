@@ -8,10 +8,10 @@ import {user} from "../../../services/user";
 import {LicitacionService} from "../../../services/licitacion.service";
 
 
-function MatchValidator(controlName: string, matchingControlName: string) {
+function MatchValidator(pw: string, pw2: string) {
   return (formGroup: FormGroup) => {
-    const control = formGroup.get(controlName);
-    const matchingControl = formGroup.get(matchingControlName);
+    const control = formGroup.get(pw);
+    const matchingControl = formGroup.get(pw2);
 
     if (matchingControl?.errors && !matchingControl.errors['No concuerdan']) {
       return;
@@ -64,10 +64,11 @@ export class UserProfileComponent implements OnInit {
       username : new FormControl('', [Validators.minLength(6), Validators.maxLength(60)]),
       phone: new FormControl('', [Validators.minLength(6), Validators.maxLength(20)]),
     });
+
     this.pwMod = this.fb.group({
-      oldpw: ['', Validators.required],
-      pw: ['', Validators.required],
-      pw2: ['', Validators.required],
+      oldpw: ['', Validators.required, Validators.maxLength(60)],
+      pw: ['', Validators.required, Validators.minLength(6), Validators.maxLength(60)],
+      pw2: ['', Validators.required, Validators.minLength(6), Validators.maxLength(60)],
     }, {
       validators: [MatchValidator('pw', 'pw2')]
     });
@@ -138,10 +139,11 @@ export class UserProfileComponent implements OnInit {
   updateUser() {
     this.progress_bar3 = true;
     const token = this.loginService.getToken();
-    console.log("PWS VALID "+this.pwMod.valid+" "+this.pwMod.value.oldpw.value+" "+this.pwMod.value.pw1.value)
+    console.log("PWS VALID "+this.pwMod.valid)
 
     if (this.pwMod.valid && token!=null) {
       const formValue = this.pwMod.value;
+      console.log("PWS VALUES "+formValue.oldpw+" "+formValue.pw1)
       const pws:string[] = [formValue.oldpw, formValue.pw1];
 
       this.userService.updatePw(token, pws).subscribe(() => {

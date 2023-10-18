@@ -134,10 +134,11 @@ export class AdminProfileComponent implements OnInit {
   updateUser() {
     this.progress_bar3 = true;
     const token = this.loginService.getToken();
-    console.log("PWS VALID "+this.pwMod.valid+" "+this.pwMod.value.oldpw.value+" "+this.pwMod.value.pw1.value)
+    console.log("PWS VALID "+this.pwMod.valid)
 
     if (this.pwMod.valid && token!=null) {
       const formValue = this.pwMod.value;
+      console.log("PWS VALUES "+formValue.oldpw+" "+formValue.pw1)
       const pws:string[] = [formValue.oldpw, formValue.pw1];
 
       this.userService.updatePw(token, pws).subscribe(() => {
