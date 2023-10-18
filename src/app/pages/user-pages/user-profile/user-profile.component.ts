@@ -8,6 +8,23 @@ import {user} from "../../../services/user";
 import {LicitacionService} from "../../../services/licitacion.service";
 
 
+function MatchValidator(controlName: string, matchingControlName: string) {
+  return (formGroup: FormGroup) => {
+    const control = formGroup.get(controlName);
+    const matchingControl = formGroup.get(matchingControlName);
+
+    if (matchingControl?.errors && !matchingControl.errors['No concuerdan']) {
+      return;
+    }
+
+    if (control?.value !== matchingControl?.value) {
+      matchingControl?.setErrors({ not_matching: true });
+    } else {
+      matchingControl?.setErrors(null);
+    }
+  };
+}
+
 interface Preferencia{
   valor: String;
 }
@@ -52,6 +69,8 @@ export class UserProfileComponent implements OnInit {
       oldpw: ['', Validators.required, Validators.maxLength(60)],
       pw: ['', Validators.required, Validators.minLength(6), Validators.maxLength(60)],
       pw2: ['', Validators.required, Validators.minLength(6), Validators.maxLength(60)],
+    }, {
+      validators: [MatchValidator('pw', 'pw2')]
     });
   }
 
