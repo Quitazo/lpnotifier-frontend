@@ -140,11 +140,11 @@ export class UserProfileComponent implements OnInit {
     this.progress_bar3 = true;
     const token = this.loginService.getToken();
     const pwModValue = this.pwMod.value;
-    console.log("PWS VALID " + this.pwMod.valid, pwModValue.oldpw, pwModValue.pw1);
+    console.log("PWS VALID " + this.pwMod.valid, pwModValue.oldpw, pwModValue.pw, pwModValue.pw2);
 
     if (this.pwMod.valid && token!=null) {
       const formValue = this.pwMod.value;
-      const pws:string[] = [formValue.oldpw, formValue.pw1];
+      const pws:string[] = [formValue.oldpw, formValue.pw];
       this.userService.updatePw(token, pws).subscribe(() => {
           this.progress_bar3 = false;
           this.snack.open('Datos guardados con exito.', 'Aceptar', {
