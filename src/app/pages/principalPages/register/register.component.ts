@@ -36,10 +36,10 @@ export class RegisterComponent implements OnInit {
   constructor(private userServices: userService, private fb: FormBuilder, private snack: MatSnackBar) {
     this.userForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]],
-      username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+      username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]],
       email: ['', [Validators.required, Validators.email]],
-      pw: ['', Validators.required],
-      pw2: ['', Validators.required],
+      pw: ['', Validators.required, Validators.minLength(6), Validators.maxLength(60)],
+      pw2: ['', Validators.required, Validators.minLength(6), Validators.maxLength(60)],
       phone: [null, [Validators.maxLength(15)]]
     }, {
       validators: [MatchValidator('pw', 'pw2')]

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private snack: MatSnackBar, private loginService:LoginService, private router:Router) {
     this.userForm = this.fb.group({
         email : new FormControl('', [Validators.required, Validators.email]),
-        pw : new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
+        pw : new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
     });
   }
 

@@ -18,7 +18,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Ingresa un usuario</mat-label>
             <input matInput type="text" #inputUsername placeholder="Username" formControlName="username" ngModel required>
-            <mat-hint align="end">{{inputUsername.value.length || 0}}/30</mat-hint>
+            <mat-hint align="end">{{inputUsername.value.length || 0}}/60</mat-hint>
             <mat-error *ngIf="userForm.invalid">{{getErrorUsernameMessage()}}</mat-error>
           </mat-form-field>
 
@@ -34,7 +34,7 @@
             <a mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </a>
-            <mat-hint align="end">{{inputPw.value.length || 0}}/40</mat-hint>
+            <mat-hint align="end">{{inputPw.value.length || 0}}/60</mat-hint>
             <mat-error *ngIf="userForm.invalid">{{getErrorPwMessage()}}</mat-error>
           </mat-form-field>
 
@@ -44,7 +44,7 @@
             <a mat-icon-button matSuffix type="button" (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
               <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </a>
-            <mat-hint align="end">{{inputPw2.value.length || 0}}/40</mat-hint>
+            <mat-hint align="end">{{inputPw2.value.length || 0}}/60</mat-hint>
             <mat-error *ngIf="userForm.hasError('not_matching', 'pw2')">{{getErrorPwsMessage()}}</mat-error>
           </mat-form-field>
 
