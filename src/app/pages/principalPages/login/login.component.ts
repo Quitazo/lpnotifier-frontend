@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
         this.loginService.setUser(usr);
       }, (error) => {
         this.progress_bar = false;
-        this.snack.open('Detalles inválidos, vuelva a intentar!!\n' + error, 'Aceptar', {
+        this.snack.open('Detalles inválidos, vuelva a intentar!!\n' + error.message.message, 'Aceptar', {
           duration: 3000
         });
       });

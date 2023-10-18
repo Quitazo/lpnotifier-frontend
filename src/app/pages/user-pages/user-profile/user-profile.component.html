@@ -45,17 +45,17 @@
           <a mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </a>
-          <mat-hint align="end">{{inputPw.value.length || 0}}/40</mat-hint>
+          <mat-hint align="end">{{inputPw.value.length || 0}}/60</mat-hint>
           <mat-error *ngIf="pwMod.invalid">{{getErrorOldPwMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Contraseña nueva</mat-label>
           <input matInput #inputPw [type]="hide1 ? 'password' : 'text'" formControlName="pw" ngModel required>
-          <a mat-icon-button matSuffix type="button" (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <a mat-icon-button matSuffix type="button" (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
             <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
           </a>
-          <mat-hint align="end">{{inputPw.value.length || 0}}/40</mat-hint>
+          <mat-hint align="end">{{inputPw.value.length || 0}}/60</mat-hint>
           <mat-error *ngIf="pwMod.invalid">{{getErrorPwMessage()}}</mat-error>
         </mat-form-field>
 
@@ -65,12 +65,12 @@
           <a mat-icon-button matSuffix type="button" (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
             <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
           </a>
-          <mat-hint align="end">{{inputPw2.value.length || 0}}/40</mat-hint>
+          <mat-hint align="end">{{inputPw2.value.length || 0}}/60</mat-hint>
           <mat-error *ngIf="pwMod.hasError('not_matching', 'pw2')">{{getErrorPwsMessage()}}</mat-error>
         </mat-form-field>
       </div>
 
-      <button id="btn_updatepw" mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Actualizar información</button>
+      <button id="btn_updatepw" mat-raised-button class="btn btn-primary" [disabled]="userMod.invalid">Actualizar Contraseña</button>
     </form>
   </div>
 

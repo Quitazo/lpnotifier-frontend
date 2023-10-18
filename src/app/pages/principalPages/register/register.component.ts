@@ -87,11 +87,11 @@ export class RegisterComponent implements OnInit {
     this.userServices.addUser(this.userForm.value).subscribe(
       (data) => {
         this.progress_bar = false;
-        Swal.fire({ title: 'User saved', html: 'El usuario con el correo '+data.email+' ha sido creado con exito.',
-          showConfirmButton: true, icon: 'success', timer: 3000 })
+        Swal.fire({ title: 'Usuario Guardado', html: 'El usuario con el correo '+data.email+' ha sido creado con exito.'+'\n(Revisa el correo para activar la cuenta)',
+          showConfirmButton: true, icon: 'success', timer: 5000 })
       },(error) => {
         this.progress_bar = false;
-        this.snack.open('Ha ocurrido un error al guardar el usuario.\n'+ error,'Cerrar',{
+        this.snack.open('Ha ocurrido un error al guardar el usuario.\n'+ error.message.message,'Cerrar',{
           duration: 3000,
           verticalPosition: "top"
         });

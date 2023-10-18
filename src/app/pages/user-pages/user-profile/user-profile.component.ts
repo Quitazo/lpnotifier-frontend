@@ -136,20 +136,31 @@ export class UserProfileComponent implements OnInit {
 
 
   updateUser() {
-    if (this.userMod.valid) {
+    this.progress_bar3 = true;
+    const token = this.loginService.getToken();
+    console.log("PWS VALID "+this.pwMod.valid+" "+this.pwMod.value.oldpw.value+" "+this.pwMod.value.pw1.value)
 
-      const formValue = this.userMod.value;
+    if (this.pwMod.valid && token!=null) {
+      const formValue = this.pwMod.value;
+      const pws:string[] = [formValue.oldpw, formValue.pw1];
 
-      // Actualizar las propiedades del objeto usr con los valores del formulario
-      this.usr.name = formValue.name;
-      this.usr.username = formValue.username;
-      this.usr.phone = formValue.phone;
-
-      // Ahora puedes realizar cualquier acción que necesites con los valores actualizados
-      // Por ejemplo, enviar los valores actualizados al servicio de usuario
-      // this.userService.updateUser(this.usr).subscribe(response => {
-      //   // Hacer algo con la respuesta si es necesario
-      // });
+      this.userService.updatePw(token, pws).subscribe(() => {
+          this.progress_bar3 = false;
+          this.snack.open('Datos guardados con exito.', 'Aceptar', {
+            duration: 3000
+          });
+        }, (error) => {
+          this.progress_bar3 = false;
+          this.snack.open('Detalles inválidos , vuelva a intentar !!\n' + error.message.message, 'Aceptar', {
+            duration: 3000
+          });
+        }
+      )
+    } else {
+      this.progress_bar3 = false;
+      this.snack.open('Formulario invalido', 'Aceptar', {
+        duration: 3000
+      });
     }
   }
 
