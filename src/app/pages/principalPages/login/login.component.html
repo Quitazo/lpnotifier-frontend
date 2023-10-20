@@ -9,7 +9,7 @@
       <form (ngSubmit)="formLogin()" class="form_login" [formGroup]="userForm">
         <mat-form-field appearance="outline">
           <mat-label>Correo</mat-label>
-          <input matInput placeholder="correo@example.com" formControlName="email" value="${{}}" ngModel required>
+          <input matInput placeholder="correo@example.com" formControlName="email" ngModel required>
           <mat-error *ngIf="userForm.invalid">{{getErrorEmailMessage()}}</mat-error>
         </mat-form-field>
 
