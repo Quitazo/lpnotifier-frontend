@@ -19,10 +19,15 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private snack: MatSnackBar, private loginService:LoginService, private router:Router) {
     this.userForm = this.fb.group({
-        email : new FormControl(localStorage.getItem('rememberUser'), [Validators.required, Validators.email]),
+        email : new FormControl('', [Validators.required, Validators.email]),
         pw : new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
     });
 
+    const storedEmail = localStorage.getItem('rememberedEmail');
+    if (storedEmail) {
+      this.userForm.patchValue({ email: storedEmail });
+      this.rememberUser = true;
+    }
   }
 
   ngOnInit(): void {
