@@ -135,7 +135,6 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-
   updateUser() {
     this.progress_bar3 = true;
     const token = this.loginService.getToken();
