@@ -1,7 +1,7 @@
 .container_profile {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: 70vh;
   justify-content: space-evenly;
 }
 
@@ -137,4 +137,3 @@ mat-form-field:nth-child(1) {
 input[type="checkbox"] {
   margin-left: auto;
 }
-
