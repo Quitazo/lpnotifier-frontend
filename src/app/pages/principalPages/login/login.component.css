@@ -10,11 +10,10 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #fefefe;
+  background-color: whitesmoke;
   border-radius: 15px;
-  border: 4px #f3f3f3 solid;
+  border: 1vh #d1d1d1 solid;
   justify-content: space-around;
-  background-image: radial-gradient(circle at 50% -20.71%, #ffffff 0, #ffffff 25%, #ffffff 50%, #f2f7f6 75%, #e6f0ed 100%);
 }
 .container_title {
   margin: 2%;
@@ -31,20 +30,21 @@
   justify-content: flex-start;
   max-width: 25%;
   min-width: 15%;
-  margin: 5px 15px;
+  margin: 5% 10%;
 }
 
 .form_container {
   display: flex;
   flex-direction: column;
-  min-width: 50%;
-  margin: 15px 10px 20px 10px;
+  min-width: 58%;
+  margin: 5% 4% 8%;
 }
 
 .form_login {
   display: flex;
   flex-direction: column;
   text-align: center;
+  padding-bottom: 6%;
 }
 
 .mat-form-field {

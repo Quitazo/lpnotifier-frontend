@@ -14,13 +14,15 @@ import {user} from "../../../services/user";
 export class LoginComponent implements OnInit {
   hide = true;
   progress_bar = false;
+  rememberUser: boolean = false;
   public userForm: FormGroup;
 
   constructor(private fb: FormBuilder, private snack: MatSnackBar, private loginService:LoginService, private router:Router) {
     this.userForm = this.fb.group({
-        email : new FormControl('', [Validators.required, Validators.email]),
+        email : new FormControl(localStorage.getItem('rememberUser'), [Validators.required, Validators.email]),
         pw : new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
     });
+
   }
 
   ngOnInit(): void {
@@ -47,7 +49,6 @@ export class LoginComponent implements OnInit {
           this.loginService.loginUser(data.token);
           setTimeout(() => {
             this.loginService.getUserRole(data.token).subscribe((rol) => {
-              console.log("ROL "+rol);
               if (rol === 'USER') {
                 // user dashboard
                 this.router.navigate(['user']);
@@ -67,22 +68,20 @@ export class LoginComponent implements OnInit {
         })
       ).subscribe((usr: user) => {
         this.loginService.setUser(usr);
+        if (this.rememberUser) {
+          localStorage.setItem('rememberUser', usr.email);
+        } else {
+          localStorage.removeItem('rememberUser');
+        }
       }, (error) => {
         this.progress_bar = false;
-        this.snack.open('Detalles inválidos, vuelva a intentar!!\n' + error.error.message, 'Aceptar', {
+        this.snack.open('Detalles inválidos, vuelva a intentarlo!', 'Aceptar', {
           duration: 3000
         });
       });
     } catch (e){
       console.log(e);
     }
-  }
-
-  onLoginProcess() {
-    this.formLogin();
-    // setTimeout(() => {
-    //   this.formLogin();
-    // }, 1000);
   }
 }
 
