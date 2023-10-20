@@ -1,8 +1,8 @@
 .container_profile {
   display: flex;
-  flex-direction: row;
-  height: 70vh;
   justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .sub_userMenu{

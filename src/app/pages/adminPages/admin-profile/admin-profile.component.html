@@ -3,7 +3,7 @@
     <div class="image_user">
       <mat-icon class="img_person">person</mat-icon>
     </div>
-    <h1 class="title">Información del usuario</h1>
+    <h1 class="title">Información del Usuario</h1>
     <hr>
     <form (ngSubmit)="formModUser()" class="form_profile" [formGroup]="userMod">
       <div class="sub_userMenu">
@@ -33,9 +33,9 @@
 
   <div class="user_panel">
     <div class="image_user">
-      <mat-icon class="img_person">person</mat-icon>
+      <mat-icon class="img_person">lock_reset</mat-icon>
     </div>
-    <h1 class="title">Información del usuario</h1>
+    <h1 class="title">Opciones de Seguridad</h1>
     <hr>
     <form (ngSubmit)="updateUser()" class="form_profile" [formGroup]="pwMod">
       <div class="sub_pwMenu">
@@ -78,7 +78,7 @@
     <div class="image_user">
       <mat-icon class="img_person">list_alt</mat-icon>
     </div>
-    <h1 class="title">Preferencias del usuario</h1>
+    <h1 class="title">Preferencias del Usuario</h1>
     <hr>
     <div class="div_preferences">
       <div class="sub_preferences">
@@ -90,7 +90,7 @@
         </div>
       </div>
       <div>
-        <button id="btn_update_Preference" mat-raised-button class="btn btn-primary" (click)="updatePreference()">actualizar Preferencias</button>
+        <button id="btn_update_Preference" mat-raised-button class="btn btn-primary" (click)="updatePreference()">Actualizar Preferencias</button>
       </div>
       <mat-label id="msg_bar" *ngIf="progress_bar2==true">Cargando...</mat-label>
       <mat-progress-bar id="load_bar" *ngIf="progress_bar2==true" mode="buffer"></mat-progress-bar>

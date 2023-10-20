@@ -132,7 +132,7 @@ export class UserProfileComponent implements OnInit {
       )
     } else {
       this.progress_bar = false;
-      this.snack.open('Formulario invalido', 'Aceptar', {
+      this.snack.open('Formulario invalido, vuelva a intentar !!', 'Aceptar', {
         duration: 3000
       });
     }
@@ -149,19 +149,19 @@ export class UserProfileComponent implements OnInit {
       const pws:string[] = [formValue.oldpw, formValue.pw];
       this.userService.updatePw(token, pws).subscribe(() => {
           this.progress_bar3 = false;
-          this.snack.open('Datos guardados con exito.', 'Aceptar', {
+          this.snack.open('Contraseña cambiada exitosamente.', 'Aceptar', {
             duration: 3000
           });
         }, (error) => {
           this.progress_bar3 = false;
-          this.snack.open('Detalles inválidos , vuelva a intentar !!\n' + error.error.message, 'Aceptar', {
+          this.snack.open('Contraseña incorrecta, verifica y vuelve a intentar !!', 'Aceptar', {
             duration: 3000
           });
         }
       )
     } else {
       this.progress_bar3 = false;
-      this.snack.open('Formulario invalido', 'Aceptar', {
+      this.snack.open('Formulario invalido, vuelva a intentar !!', 'Aceptar', {
         duration: 3000
       });
     }
@@ -186,7 +186,7 @@ export class UserProfileComponent implements OnInit {
         });
       },(error) => {
         this.progress_bar2 = false;
-        this.snack.open('Detalles inválidos , vuelva a intentar !!\n'+error.error.message,'Aceptar',{
+        this.snack.open('Detalles inválidos, vuelva a intentar !!\n'+error.error.message,'Aceptar',{
           duration:3000
         });
       });

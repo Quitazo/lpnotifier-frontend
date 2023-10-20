@@ -27,11 +27,11 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .table-header {
-  padding-inline: 5vh;
+  margin-inline: 2vh;
   align-items: center;
   display: flex;
-  flex-direction: row;
-  width: 38vh;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .table-search {
@@ -43,9 +43,9 @@ h1,h2,h3,h4,h5,h6 {
 
 .table-buttons {
   display: flex;
-  padding-inline: 2vh;
-  align-items: center;
+  margin-inline: 2%;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .table_column {
@@ -63,5 +63,5 @@ h1,h2,h3,h4,h5,h6 {
 .btn-showAll, .btn-showPreference{
   font-size: 80%;
   margin: 1vh;
-  width: 48vh;
+  width: auto;
 }
