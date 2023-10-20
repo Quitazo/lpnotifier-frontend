@@ -1,139 +1,67 @@
-.container_profile {
+h1,h2,h3,h4,h5,h6 {
+  margin: 8px 0;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  flex-direction: column;
+  margin: 10px 12px;
+}
+
+.mat-elevation-z8 {
+  display: grid;
+  width: 100%;
+  max-height: 100%;
+}
+
+.mat-form-field {
+  font-size: 88%;
+  width: 100%;
+}
+
+.table-header {
+  padding-inline: 5vh;
+  align-items: center;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  width: 38vh;
 }
 
-.sub_userMenu{
+.table-search {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  border-radius: 10px 10px 0 0;
-  height: fit-content;
-  padding: 20px;
-  align-self: center;
-  background-color: white;
-}
-
-.container_preferences {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  background-color: white;
-  height: fit-content;
-}
-
-.div_preferences{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  border-radius: 10px;
-  height: fit-content;
-  padding: 20px;
-  align-self: center;
-  background-color: #c0c0c0;
-}
-.sub_preferences {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  border-radius: 10px 10px 0 0;
-  height: fit-content;
-  padding: 20px;
-  align-self: center;
-  background-color: white;
-}
-
-.user_panel {
-  display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding-inline: 1vh;
   align-items: center;
 }
 
-.sub_pwMenu{
+.table-buttons {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  border-radius: 10px 10px 0 0;
-  height: fit-content;
-  padding: 20px;
-  align-self: center;
-  background-color: white;
-}
-
-.user_preferences {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding-inline: 2vh;
   align-items: center;
+  justify-content: space-between;
 }
 
-.form_profile {
-  display: flex;
-  flex-direction: column;
-  background-color: #c0c0c0;
-  border: #e3e3e3 10px;
-  border-radius: 10px;
-  padding: 15px;
+.table_column {
+  font-size: 88%;
+  text-align: center;
+  padding-inline: 2px;
 }
 
-mat-form-field {
-  background-color: #FFFFFF;
-  padding: 2vh;
-}
-mat-form-field:nth-child(1) {
-  border-radius: 10px 10px 0 0;
+.table_column:nth-child(4) {
+  font-size: 77%;
+  text-align: justify;
+  padding-inline: 1vh;
 }
 
-#btn_update, #btn_update_Preference, #btn_updatepw {
-  margin: 20px;
-  color: cadetblue;
-  background-color: white;
-  border-radius: 12px;
+.btn-showAll, .btn-showPreference{
+  font-size: 80%;
+  margin: 1vh;
+  width: 48vh;
 }
-
-.image_user {
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  align-items: center;
-  width: 100px; /* ajusta el ancho según tus necesidades */
-  height: 100px; /* ajusta la altura según tus necesidades */
-  background-color: #ccc; /* opcional: agrega un color de fondo para verificar el tamaño */
-  margin: 5%;
-  border-radius: 100%;
-  border: #FFFFFF 2px;
-
-}
-.img_person {
-  width: fit-content;
-  height: fit-content;
-  font-size: 48px; /* ajusta el tamaño de la fuente según tus necesidades */
-}
-
-#user_data {
-
-}
-
-.item {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-}
-
-.checkbox-label {
-  display: flex;
-  align-items: center;
-}
-
-
-
-input[type="checkbox"] {
-  margin-left: auto;
-}
-

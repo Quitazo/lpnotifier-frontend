@@ -23,7 +23,7 @@ export class PageNotFoundComponent implements OnInit {
         this.loginService.getUserRole(token).subscribe((rol) => {
           if (rol == 'ADMIN'){
             this.router.navigate(['/admin'])
-          }else if (rol == 'USER'){
+          } else if (rol == 'USER'){
             this.router.navigate(['/user'])
           }
         })

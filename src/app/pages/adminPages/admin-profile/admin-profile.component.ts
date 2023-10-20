@@ -118,7 +118,7 @@ export class AdminProfileComponent implements OnInit {
           });
         }, (error) => {
           this.progress_bar = false;
-          this.snack.open('Detalles inválidos , vuelva a intentar !!\n' + error.message.message, 'Aceptar', {
+          this.snack.open('Detalles inválidos , vuelva a intentar !!\n' + error.error.message, 'Aceptar', {
             duration: 3000
           });
         }
@@ -148,7 +148,7 @@ export class AdminProfileComponent implements OnInit {
           });
         }, (error) => {
           this.progress_bar3 = false;
-          this.snack.open('Detalles inválidos , vuelva a intentar !!\n' + error.message.message, 'Aceptar', {
+          this.snack.open('Detalles inválidos , vuelva a intentar !!\n' + error.error.message, 'Aceptar', {
             duration: 3000
           });
         }
@@ -181,7 +181,7 @@ export class AdminProfileComponent implements OnInit {
         });
       },(error) => {
         this.progress_bar2 = false;
-        this.snack.open('Detalles inválidos , vuelva a intentar !!\n'+error.message.message,'Aceptar',{
+        this.snack.open('Detalles inválidos , vuelva a intentar !!\n'+error.error.message,'Aceptar',{
           duration:3000
         });
       });

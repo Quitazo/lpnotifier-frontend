@@ -91,7 +91,7 @@ export class RegisterComponent implements OnInit {
           showConfirmButton: true, icon: 'success', timer: 5000 })
       },(error) => {
         this.progress_bar = false;
-        this.snack.open('Ha ocurrido un error al guardar el usuario.\n'+ error.message.message,'Cerrar',{
+        this.snack.open('Ha ocurrido un error al guardar el usuario.\n'+ error.error.message,'Cerrar',{
           duration: 3000,
           verticalPosition: "top"
         });

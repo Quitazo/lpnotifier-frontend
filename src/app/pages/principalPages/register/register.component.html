@@ -49,7 +49,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>(Optional) Telefono</mat-label>
+            <mat-label>(Opcional) Telefono</mat-label>
             <input matInput #inputPhone placeholder="Phone number" formControlName="phone" [minLength]="6" [maxLength]="15" ngModel>
             <mat-hint align="end">{{inputPhone.value.length || 0}}/15</mat-hint>
           </mat-form-field>
@@ -58,7 +58,7 @@
         </form>
 
         <button mat-raised-button type="submit" class="btn btn-snd" [routerLink]="'/login'" >Tengo un usuario</button>
-        <!--        <button mat-raised-button type="submit" class="btn btn-trd">Olvide la contraseña?</button>-->
+        <button mat-raised-button type="submit" class="btn btn-trd">Olvide la contraseña?</button>
       </div>
     </div>
     <mat-label id="msg_bar" *ngIf="progress_bar==true" >Cargando...</mat-label>
