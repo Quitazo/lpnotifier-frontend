@@ -93,7 +93,6 @@ export class UserProfileComponent implements OnInit {
     }
     return this.pwMod.get('old')?.hasError('oldPassword') ? 'La contraseña ingresada no es valida.' : '';
   }
-
   getErrorPwMessage() {
     if (this.pwMod.get('pw')?.hasError('required')) {
       return 'Es necesario ingresar una Contraseña.';
