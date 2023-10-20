@@ -6,6 +6,7 @@ import {LoginService} from "../../../services/login.service";
 import {Router} from "@angular/router";
 import {user} from "../../../services/user";
 import {LicitacionService} from "../../../services/licitacion.service";
+import {debounceTime} from "rxjs";
 
 
 function MatchValidator(controlName: string, matchingControlName: string) {
@@ -13,7 +14,7 @@ function MatchValidator(controlName: string, matchingControlName: string) {
     const control = formGroup.get(controlName);
     const matchingControl = formGroup.get(matchingControlName);
 
-    if (matchingControl?.errors && !matchingControl.errors['No concuerdan']) {
+    if (matchingControl?.errors && !matchingControl.errors['not_matching']) {
       return;
     }
 
@@ -41,6 +42,7 @@ export class UserProfileComponent implements OnInit {
   progress_bar = false;
   progress_bar2 = false;
   progress_bar3 = false;
+  characterCount: { [key: string]: number } = {};
 
   public userMod: FormGroup;
   public pwMod: FormGroup;
@@ -59,6 +61,7 @@ export class UserProfileComponent implements OnInit {
     this.loginService.getUserData().subscribe((usrTemp: user) => {
       this.usr = usrTemp;
     });
+
     this.userMod = this.fb.group({
       name : new FormControl('', [Validators.minLength(6), Validators.maxLength(60)]),
       username : new FormControl('', [Validators.minLength(6), Validators.maxLength(60)]),
@@ -66,9 +69,9 @@ export class UserProfileComponent implements OnInit {
     });
 
     this.pwMod = this.fb.group({
-      oldpw: ['', Validators.required, Validators.maxLength(60)],
-      pw: ['', Validators.required, Validators.minLength(6), Validators.maxLength(60)],
-      pw2: ['', Validators.required, Validators.minLength(6), Validators.maxLength(60)],
+      oldpw: new FormControl('', [Validators.required, Validators.maxLength(60)]),
+      pw: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
+      pw2: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
     }, {
       validators: [MatchValidator('pw', 'pw2')]
     });
@@ -83,6 +86,7 @@ export class UserProfileComponent implements OnInit {
       });
     }
   }
+
   getErrorOldPwMessage() {
     if (this.pwMod.get('old')?.hasError('required')) {
       return 'Es necesario ingresar una Contraseña.';
