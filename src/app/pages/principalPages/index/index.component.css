@@ -16,13 +16,13 @@
 
 h1{
   padding: 20px;
-  font-size: 50px;
+  font-size: 4vh;
 }
 
 /* Estilo para h1 y p */
 p {
   margin-top: 3vh;
-  font-size: 24px; /* Tamaño de fuente grande */
+  font-size: 1.9vh; /* Tamaño de fuente grande */
   font-family: Arial, sans-serif; /* Fuente cómoda a la vista */
   text-align: justify;
 }
@@ -33,7 +33,7 @@ p {
 
 /* Estilo para los beneficios */
 h2 {
-  font-size: 50px; /* Tamaño de fuente para el título de beneficios */
+  font-size: 4vh; /* Tamaño de fuente para el título de beneficios */
   text-align: center;
   padding: 20px;
   margin: 20px;
@@ -48,6 +48,7 @@ h2 {
 
 .container_dialogos {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .columna {
