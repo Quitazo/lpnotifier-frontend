@@ -1,0 +1,38 @@
+<div class="encabezado">
+  <div class="contenido">
+    <h1>LP-Notifier</h1>
+    <hr>
+    <div id="container_title" class="mat-mdc-dialog-container">
+      <p>
+        El propósito de esta aplicación web es facilitarte la tarea de buscar las licitaciones
+        que te interesan. Para esto se decidió realizar una extracción de toda la información relacionada
+        con las licitaciones públicas. Este proceso es automático, así que siempre que ingreses podrás observar
+        las últimas licitaciones. Además de poder observar de una manera más cómoda las licitaciones,
+        también puedes acceder a ellas por medio de la URL que se proporciona al final de cada licitación.
+        Por otro lado, si quieres recibir notificaciones respecto a las nuevas licitaciones de tu interés,
+        te invitamos a que te registres dentro de la aplicación. Además, podrás desbloquear nuevas funcionalidades
+        conforme vayan saliendo simplemente estando registrado dentro de la aplicación.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="beneficios">
+  <div>
+    <h2>Beneficios</h2>
+    <hr>
+  </div>
+  <div class="container_dialogos">
+    <div class="columna">
+      <h3 id="sub_text_1">Acceso a las últimas licitaciones</h3>
+      <p class="text_descripcion">Tendras acceso a todas las licitaciones que cumplan con los requisitos previvos
+        para su correcta visualizacion ademas de podras dirigirte directamente a la licitacion
+        a la pagina de SECOP-II</p>
+      <button id="btn_updatepw" mat-raised-button color="warn" [routerLink]="'/home'">Mirar licitaciones</button>
+    </div>
+    <div class="columna">
+      <h3 id="sub_text_2">Asignación y modificación de preferencias</h3>
+      <p class="text_descripcion">Una vez te registras dentro de nuestra aplicacion, descubre todo lo que tenemos preparado para ti.</p>
+      <button id="btn_updatepw2" mat-raised-button color="primary" [routerLink]="'/signup'">Registarse</button>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,7 @@ import {UserProfileComponent} from "./pages/user-pages/user-profile/user-profile
 import {UserHomeComponent} from "./pages/user-pages/user-home/user-home.component";
 import {UserDashboardComponent} from "./pages/user-pages/user-dashboard/user-dashboard.component";
 import {VerifyComponent} from "./pages/principalPages/verify/verify.component";
+import {IndexComponent} from "./pages/principalPages/index/index.component";
 
 
 const principalRoutes: Routes = [
@@ -62,13 +63,18 @@ const principalRoutes: Routes = [
   },
   {
     path:'',
+    component:IndexComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'home',
     component:HomeComponent,
     pathMatch:'full'
   },
   {
     path: '**',
     component: PageNotFoundComponent
-  }
+  },
 ];
 
 @NgModule({

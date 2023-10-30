@@ -17,7 +17,7 @@ export class PageNotFoundComponent implements OnInit {
   goBack() {
     if (!this.loginService.isLoggedIn()){
       this.router.navigate(['..']);
-    }else {
+    } else {
       const token = this.loginService.getToken();
       if (token != null){
         this.loginService.getUserRole(token).subscribe((rol) => {

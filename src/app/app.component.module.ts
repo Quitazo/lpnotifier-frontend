@@ -4,6 +4,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from './app.component';
 import { FooterModule } from './components/footer/footer.module';
 import { HomeComponent } from "./pages/principalPages/home/home.component";
+import { IndexComponent } from './pages/principalPages/index/index.component';
 import { LoginComponent } from './pages/principalPages/login/login.component';
 import { PageNotFoundComponent } from "./pages/principalPages/page-not-found/page-not-found.component";
 import { RegisterComponent } from './pages/principalPages/register/register.component';
@@ -33,12 +34,14 @@ import { UserProfileComponent } from './pages/user-pages/user-profile/user-profi
 import { VerifyComponent } from './pages/principalPages/verify/verify.component';
 import { CookieService } from 'ngx-cookie-service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarModule,
     FooterModule,
     HomeComponent,
+    IndexComponent,
     RegisterComponent,
     LoginComponent,
     UserHomeComponent,

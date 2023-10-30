@@ -1,0 +1,80 @@
+/* Estilo para el primer div (encabezado) */
+.encabezado {
+  background-image: url('../../../../assets/apreton_estreche_de_manos.jpg'); /* Ruta de la imagen de fondo */
+  background-size: cover; /* Ajusta la imagen para que quepa completamente en el div sin distorsionarla */
+  background-repeat: no-repeat; /* Evita la repetición de la imagen de fondo */
+  background-position: center; /* Centra la imagen en el div */
+  color: #ffffff; /* Color de texto para que se destaque en la imagen */
+}
+
+/* Estilo para el contenido dentro del encabezado */
+.contenido {
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente para resaltar el texto */
+  padding: 50px; /* Espaciado interior para el contenido */
+  text-align: center; /* Centra el contenido en el div */
+}
+
+h1{
+  padding: 20px;
+  font-size: 50px;
+}
+
+/* Estilo para h1 y p */
+p {
+  margin-top: 3vh;
+  font-size: 24px; /* Tamaño de fuente grande */
+  font-family: Arial, sans-serif; /* Fuente cómoda a la vista */
+  text-align: justify;
+}
+
+.text_descripcion {
+  margin: 2vh;
+}
+
+/* Estilo para los beneficios */
+h2 {
+  font-size: 50px; /* Tamaño de fuente para el título de beneficios */
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+}
+
+.beneficios {
+  display: flex; /* Muestra los elementos en línea */
+  text-align: center;
+  flex-direction: column;
+  padding: 3vh;
+}
+
+.container_dialogos {
+  display: flex;
+}
+
+.columna {
+  flex: 1; /* Divide el espacio disponible en dos columnas */
+  padding: 30px;
+  margin: 30px;
+}
+
+h3 {
+  font-size: 30px; /* Tamaño de fuente para h3 */
+  font-style: italic;
+}
+
+#sub_text_1 {
+  color: crimson;
+  text-decoration: underline;
+}
+
+#sub_text_2 {
+  color: darkblue;
+  text-decoration: underline;
+}
+
+#btn_updatepw {
+  border: 1px #ababab solid;
+}
+
+#btn_updatepw2 {
+  border: 1px #ababab solid;
+}
