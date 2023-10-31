@@ -78,38 +78,39 @@ export class RegisterComponent implements OnInit {
     }
     return this.userForm.get('pw2')?.hasError('not_matching') ? 'Las contraseñas no concuerdan!' : '';
   }
-  get passwordMatchError() {
-    return this.userForm.getError('mismatch') && this.userForm.get('confirmPassword')?.touched;
-  }
 
   formSubmit() {
-    this.progress_bar = true;
-    if (this.userForm.valid) {
-      this.userServices.addUser(this.userForm.value).subscribe(
-        (data) => {
-          this.progress_bar = false;
-          Swal.fire({
-            title: 'Usuario Guardado',
-            html: 'El usuario con el correo ' + data.email + ' ha sido creado con exito.' + '\n(Revisa el correo para activar la cuenta)',
-            showConfirmButton: true,
-            icon: 'success',
-            timer: 5000
-          })
-        }, (error) => {
-          this.progress_bar = false;
-          this.snack.open('Ha ocurrido un error al guardar el usuario.\n' + error.error.message, 'Cerrar', {
-            duration: 3000,
-            verticalPosition: "top"
-          });
-        }
-      )
-    } else {
-      this.progress_bar = false;
-      Swal.fire({
-        icon: 'error',
-        title: 'Formulario invalido',
-        text: 'Llenar bien los campos!!!',
-      })
+    try {
+      this.progress_bar = true;
+      if (this.userForm.valid) {
+        const user = this.userForm.value;
+        this.userServices.addUser(user).subscribe((data) => {
+              this.progress_bar = false;
+              Swal.fire({
+                title: 'Usuario Guardado',
+                html: 'El usuario con el correo ' + data.email + ' ha sido creado con exito.' + '\n(Revisa el correo para activar la cuenta)',
+                showConfirmButton: true,
+                icon: 'success',
+                timer: 5000
+              })
+            }, (error) => {
+              this.progress_bar = false;
+              this.snack.open('Ha ocurrido un error al guardar el usuario.\n' + error.error.message, 'Cerrar', {
+                duration: 3000,
+                verticalPosition: "top"
+              });
+            }
+          )
+      } else {
+        this.progress_bar = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Formulario invalido',
+          text: 'Llenar bien los campos!!!',
+        })
+      }
+    } catch (e){
+      console.log(e);
     }
   }
 }
