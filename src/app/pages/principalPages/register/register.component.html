@@ -45,7 +45,7 @@
               <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </a>
             <mat-hint align="end">{{inputPw2.value.length || 0}}/60</mat-hint>
-            <mat-error *ngIf="userForm.hasError('not_matching', 'pw2')">{{getErrorPwsMessage()}}</mat-error>
+            <mat-error *ngIf="userForm.hasError('not_matching')">{{getErrorPwsMessage()}}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
