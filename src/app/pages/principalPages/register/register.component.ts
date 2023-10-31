@@ -84,18 +84,32 @@ export class RegisterComponent implements OnInit {
 
   formSubmit() {
     this.progress_bar = true;
-    this.userServices.addUser(this.userForm.value).subscribe(
-      (data) => {
-        this.progress_bar = false;
-        Swal.fire({ title: 'Usuario Guardado', html: 'El usuario con el correo '+data.email+' ha sido creado con exito.'+'\n(Revisa el correo para activar la cuenta)',
-          showConfirmButton: true, icon: 'success', timer: 5000 })
-      },(error) => {
-        this.progress_bar = false;
-        this.snack.open('Ha ocurrido un error al guardar el usuario.\n'+ error.error.message,'Cerrar',{
-          duration: 3000,
-          verticalPosition: "top"
-        });
-      }
-    )
+    if (this.userForm.valid) {
+      this.userServices.addUser(this.userForm.value).subscribe(
+        (data) => {
+          this.progress_bar = false;
+          Swal.fire({
+            title: 'Usuario Guardado',
+            html: 'El usuario con el correo ' + data.email + ' ha sido creado con exito.' + '\n(Revisa el correo para activar la cuenta)',
+            showConfirmButton: true,
+            icon: 'success',
+            timer: 5000
+          })
+        }, (error) => {
+          this.progress_bar = false;
+          this.snack.open('Ha ocurrido un error al guardar el usuario.\n' + error.error.message, 'Cerrar', {
+            duration: 3000,
+            verticalPosition: "top"
+          });
+        }
+      )
+    } else {
+      this.progress_bar = false;
+      Swal.fire({
+        icon: 'error',
+        title: 'Formulario invalido',
+        text: 'Llenar bien los campos!!!',
+      })
+    }
   }
 }
