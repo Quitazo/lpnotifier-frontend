@@ -56,6 +56,9 @@
             <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
           </a>
           <mat-hint align="end">{{inputPw1.value?.length || 0}}/60</mat-hint>
+          <mat-error *ngIf="pwMod.get('pw')?.hasError('invalid_length')">
+            La contraseña no debe superar los 60 caracteres.
+          </mat-error>
           <mat-error *ngIf="pwMod.invalid">{{getErrorPwMessage()}}</mat-error>
         </mat-form-field>
 

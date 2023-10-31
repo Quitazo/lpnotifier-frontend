@@ -1,38 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup,
-  ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { userService } from "../../../services/user.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import Swal from "sweetalert2";
 
-// function MatchValidator(controlName: string, matchingControlName: string) {
-//   return (formGroup: FormGroup) => {
-//     const control = formGroup.get(controlName);
-//     const matchingControl = formGroup.get(matchingControlName);
-//
-//     if (matchingControl?.errors && !matchingControl.errors['not_matching']) {
-//       return;
-//     }
-//
-//     if (control?.value !== matchingControl?.value) {
-//       matchingControl?.setErrors({ not_matching: true });
-//     } else {
-//       matchingControl?.setErrors(null);
-//     }
-//   };
-// }
-
-function MatchValidator(controlName: string, matchingControlName: string) {
-  return (formGroup: FormGroup) => {
-    const control = formGroup.get(controlName);
-    const matchingControl = formGroup.get(matchingControlName);
-
-    if (control?.value !== matchingControl?.value) {
-      return { not_matching: true };
-    }
-    return null;
-  };
-}
 
 @Component({
   selector: 'app-register',
@@ -50,12 +21,30 @@ export class RegisterComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]],
       username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]],
       email: ['', [Validators.required, Validators.email]],
-      pw: ['', Validators.required, Validators.minLength(6), Validators.maxLength(60)],
-      pw2: ['', Validators.required, Validators.minLength(6), Validators.maxLength(60)],
+      pw: ['', Validators.required],
+      pw2: ['', Validators.required],
       phone: [null, [Validators.maxLength(15)]]
     }, {
-      validators: [MatchValidator('pw', 'pw2')]
+      validators: this.matchValidator
     });
+  }
+
+  matchValidator(formGroup: FormGroup) {
+    const password = formGroup.get('pw')?.value;
+    const confirmPassword = formGroup.get('pw2')?.value;
+
+    // Validar longitud de la contraseña
+    if (password && password.length > 60) {
+      formGroup.get('pw')?.setErrors({ invalid_length: true });
+    } else {
+      formGroup.get('pw')?.setErrors(null);
+    }
+
+    if (password !== confirmPassword) {
+      formGroup.get('pw2')?.setErrors({ not_matching: true });
+    } else {
+      formGroup.get('pw2')?.setErrors(null);
+    }
   }
 
   ngOnInit(): void { }

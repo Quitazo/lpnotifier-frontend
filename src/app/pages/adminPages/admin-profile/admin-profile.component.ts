@@ -8,23 +8,6 @@ import {user} from "../../../services/user";
 import {Router} from "@angular/router";
 
 
-function MatchValidator(controlName: string, matchingControlName: string) {
-  return (formGroup: FormGroup) => {
-    const control = formGroup.get(controlName);
-    const matchingControl = formGroup.get(matchingControlName);
-
-    if (matchingControl?.errors && !matchingControl.errors['No concuerdan']) {
-      return;
-    }
-
-    if (control?.value !== matchingControl?.value) {
-      matchingControl?.setErrors({ not_matching: true });
-    } else {
-      matchingControl?.setErrors(null);
-    }
-  };
-}
-
 interface Preferencia{
   valor: String;
 }
@@ -63,17 +46,36 @@ export class AdminProfileComponent implements OnInit {
     this.userMod = this.fb.group({
       name : new FormControl('', [Validators.minLength(6), Validators.maxLength(60)]),
       username : new FormControl('', [Validators.minLength(6), Validators.maxLength(60)]),
-      phone: new FormControl('', [Validators.minLength(6), Validators.maxLength(20)]),
+      phone: new FormControl('', [Validators.minLength(6), Validators.maxLength(15)]),
     });
 
     this.pwMod = this.fb.group({
-      oldpw: new FormControl('', [Validators.required, Validators.maxLength(60)]),
-      pw: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
-      pw2: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(60)]),
+      oldpw: new FormControl('', [Validators.required]),
+      pw: new FormControl('', [Validators.required]),
+      pw2: new FormControl('', [Validators.required]),
     }, {
-      validators: [MatchValidator('pw', 'pw2')]
+      validators: this.matchValidator
     });
   }
+
+  matchValidator(formGroup: FormGroup) {
+    const password = formGroup.get('pw')?.value;
+    const confirmPassword = formGroup.get('pw2')?.value;
+
+    // Validar longitud de la contraseña
+    if (password && password.length > 60) {
+      formGroup.get('pw')?.setErrors({ invalid_length: true });
+    } else {
+      formGroup.get('pw')?.setErrors(null);
+    }
+
+    if (password !== confirmPassword) {
+      formGroup.get('pw2')?.setErrors({ not_matching: true });
+    } else {
+      formGroup.get('pw2')?.setErrors(null);
+    }
+  }
+
 
   ngOnInit() {
     const user = this.loginService.getUser();

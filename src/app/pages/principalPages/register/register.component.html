@@ -9,14 +9,14 @@
       <div class="form_container">
         <form (ngSubmit)="formSubmit()" class="form_register" [formGroup]="userForm">
           <mat-form-field appearance="outline">
-            <mat-label>Ingresa un nombre</mat-label>
+            <mat-label>Ingresa un nombre - (Minimo 6)</mat-label>
             <input matInput type="text" #inputName placeholder="Your name" formControlName="name" ngModel required/>
             <mat-hint align="end">{{inputName.value.length || 0}}/60</mat-hint>
             <mat-error *ngIf="userForm.invalid">{{getErrorNameMessage()}}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Ingresa un usuario</mat-label>
+            <mat-label>Ingresa un usuario - (Minimo 6)</mat-label>
             <input matInput type="text" #inputUsername placeholder="Username" formControlName="username" ngModel required>
             <mat-hint align="end">{{inputUsername.value.length || 0}}/60</mat-hint>
             <mat-error *ngIf="userForm.invalid">{{getErrorUsernameMessage()}}</mat-error>
@@ -29,23 +29,26 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Ingresa una contraseña</mat-label>
+            <mat-label>Ingresa una contraseña - (Minimo 8)</mat-label>
             <input matInput #inputPw [type]="hide ? 'password' : 'text'" formControlName="pw" ngModel required>
             <a mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </a>
             <mat-hint align="end">{{inputPw.value.length || 0}}/60</mat-hint>
+            <mat-error *ngIf="userForm.get('pw')?.hasError('invalid_length')">
+              La contraseña no debe superar los 60 caracteres.
+            </mat-error>
             <mat-error *ngIf="userForm.invalid">{{getErrorPwMessage()}}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Confirmar la contraseña</mat-label>
+            <mat-label>Confirmar la contraseña - (Minimo 8)</mat-label>
             <input matInput #inputPw2 [type]="hide2 ? 'password' : 'text'" formControlName="pw2" ngModel required>
             <a mat-icon-button matSuffix type="button" (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
               <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </a>
             <mat-hint align="end">{{inputPw2.value.length || 0}}/60</mat-hint>
-            <mat-error *ngIf="userForm.hasError('not_matching')">{{getErrorPwsMessage()}}</mat-error>
+            <mat-error *ngIf="userForm.hasError('not_matching', 'pw2')">{{getErrorPwsMessage()}}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
