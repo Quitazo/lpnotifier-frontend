@@ -40,7 +40,7 @@
 
           <mat-form-field appearance="outline">
             <mat-label>Confirmar la contraseña</mat-label>
-            <input matInput #inputPw2 [type]="hide2 ? 'password' : 'text'" formControlName="pw2" required>
+            <input matInput #inputPw2 [type]="hide2 ? 'password' : 'text'" formControlName="pw2" ngModel required>
             <a mat-icon-button matSuffix type="button" (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
               <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </a>

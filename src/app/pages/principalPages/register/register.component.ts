@@ -5,20 +5,32 @@ import { userService } from "../../../services/user.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import Swal from "sweetalert2";
 
+// function MatchValidator(controlName: string, matchingControlName: string) {
+//   return (formGroup: FormGroup) => {
+//     const control = formGroup.get(controlName);
+//     const matchingControl = formGroup.get(matchingControlName);
+//
+//     if (matchingControl?.errors && !matchingControl.errors['not_matching']) {
+//       return;
+//     }
+//
+//     if (control?.value !== matchingControl?.value) {
+//       matchingControl?.setErrors({ not_matching: true });
+//     } else {
+//       matchingControl?.setErrors(null);
+//     }
+//   };
+// }
+
 function MatchValidator(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
     const control = formGroup.get(controlName);
     const matchingControl = formGroup.get(matchingControlName);
 
-    if (matchingControl?.errors && !matchingControl.errors['not_matching']) {
-      return;
-    }
-
     if (control?.value !== matchingControl?.value) {
-      matchingControl?.setErrors({ not_matching: true });
-    } else {
-      matchingControl?.setErrors(null);
+      return { not_matching: true };
     }
+    return null;
   };
 }
 
